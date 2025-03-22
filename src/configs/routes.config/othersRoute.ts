@@ -6,7 +6,7 @@ const othersRoute: Routes = [
     {
         key: 'accessDenied',
         path: `/access-denied`,
-        component: lazy(() => import('@/views/others/AccessDenied')),
+        component: lazy(() => import('@/views/auth/AccessDenied')),
         authority: [ADMIN, USER],
         meta: {
             pageBackgroundType: 'plain',

@@ -18,9 +18,9 @@ export type ThemeConfig = {
  * we recommend to use the configuration that generated from demo.
  */
 export const themeConfig: ThemeConfig = {
-    themeSchema: '',
+    themeSchema:  'default',
     direction: THEME_ENUM.DIR_LTR,
-    mode: THEME_ENUM.MODE_LIGHT,
+    mode: 'light',
     panelExpand: false,
     controlSize: 'md',
     layout: {
@@ -28,3 +28,8 @@ export const themeConfig: ThemeConfig = {
         sideNavCollapse: false,
     },
 }
+
+  
+            
+
+  

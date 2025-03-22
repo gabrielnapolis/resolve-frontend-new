@@ -45,6 +45,16 @@ const publicNavigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
+    {
+        key: 'Help',
+        path: '/ajuda',
+        title: 'Ajuda',
+        translateKey: 'nav.help',
+        icon: 'helpCenter',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
 ]
 
 export default publicNavigationConfig

@@ -1,6 +1,6 @@
 export const categoriesData = [
     {
-        name: 'Get Started',
+        name: 'Como começar',
         topics: [
             {
                 id: 'introduction',
@@ -24,74 +24,7 @@ export const categoriesData = [
                 articleCounts: 3,
             },
         ],
-    },
-    {
-        name: 'Data Collection and Analysis',
-        topics: [
-            {
-                id: 'survey',
-                name: 'Survey',
-                description:
-                    'Articles related to collecting data through surveys.',
-                articleCounts: 4,
-            },
-            {
-                id: 'analytic',
-                name: 'Analytic',
-                description: 'Articles related to analyzing data.',
-                articleCounts: 6,
-            },
-            {
-                id: 'dataVisualization',
-                name: 'Data Visualization',
-                description:
-                    'Articles related to visualizing data in charts, graphs, etc.',
-                articleCounts: 9,
-            },
-        ],
-    },
-    {
-        name: 'System Management and Security',
-        topics: [
-            {
-                id: 'chatbot',
-                name: 'Chatbot',
-                description: 'Articles related to automated communication.',
-                articleCounts: 8,
-            },
-            {
-                id: 'media',
-                name: 'Media',
-                description: ' Articles related to media and content.',
-                articleCounts: 3,
-            },
-            {
-                id: 'security',
-                name: 'Security',
-                description: 'Articles related to ensuring security.',
-                articleCounts: 5,
-            },
-            {
-                id: 'integration',
-                name: 'Integration',
-                description:
-                    'Articles related to integrating different systems.',
-                articleCounts: 7,
-            },
-            {
-                id: 'themes',
-                name: 'Themes',
-                description: ' Articles related to themes and customization.',
-                articleCounts: 9,
-            },
-            {
-                id: 'commission',
-                name: 'Commission',
-                description: 'Articles related to managing commissions.',
-                articleCounts: 11,
-            },
-        ],
-    },
+    }
 ]
 
 export const articleListData = [

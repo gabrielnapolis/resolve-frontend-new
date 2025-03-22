@@ -13,7 +13,7 @@ export const protectedRoutes: Routes = [
         key: 'home',
         path: '/home',
         component: lazy(
-            () => import('@/views/concepts/help-center/SupportHub')),
+            () => import('@/views/search/index'),),
         authority: [],
         meta: {
             pageContainerType: 'gutterless',
@@ -52,6 +52,18 @@ export const protectedRoutes: Routes = [
         path: '/contractor/dashboard',
         component: lazy(() => import('@/views/concepts/accounts/Settings')),
         authority: [],
+    },
+    {
+        key: 'concepts.helpCenter.supportHub',
+        path: '/ajuda',
+        component: lazy(
+            () => import('@/views/help-center/SupportHub'),
+        ),
+        authority: [ADMIN, USER],
+        meta: {
+            pageContainerType: 'gutterless',
+            pageBackgroundType: 'plain',
+        },
     },
 
     ...dashboardsRoute,
