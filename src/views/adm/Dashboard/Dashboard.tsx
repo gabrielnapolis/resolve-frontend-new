@@ -6,11 +6,10 @@ import MobileMenu from './components/MobileMenu'
 
 import { useDashboardStore } from './components/store/dashboardStore'
 
-const Panel = lazy(() =>import('@/views/dashboards/EcommerceDashboard'))
 const Clients = lazy(() => import('./DasboardClient/DashboardClients'))
 const Contractor = lazy(() => import('./DashboardContractor/DashboardContractor'))
 const Speciality = lazy(() => import('./DashboardSpeciality/DashboardSpeciality'))
-const Payments = lazy(() => import('./DashboardPayment/DashboardPayments'))
+const Payments = lazy(() => import('./DashboardPayments/DashboardPayments'))
 
 const Dashboard = () => {
     const { currentView } = useDashboardStore()

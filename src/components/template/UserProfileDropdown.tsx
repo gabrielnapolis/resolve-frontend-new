@@ -21,14 +21,9 @@ type DropdownList = {
 const dropdownItemList: DropdownList[] = [
     {
         label: 'Perfil',
-        path: '/concepts/account/settings',
+        path: '/contractor/settings',
         icon: <PiUserDuotone />,
-    },
-    {
-        label: 'Configurações da Conta',
-        path: '/concepts/account/settings',
-        icon: <PiGearDuotone />,
-    },
+    }
 ]
 
 const _UserDropdown = () => {

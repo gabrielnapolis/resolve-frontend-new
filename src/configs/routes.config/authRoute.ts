@@ -26,6 +26,16 @@ const authRoute: Routes = [
         component: lazy(() => import('@/views/auth/ResetPassword')),
         authority: [],
     },
+    {
+        key: 'accessDenied',
+        path: `/access-denied`,
+        component: lazy(() => import('@/views/auth/AccessDenied')),
+        authority: [],
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default authRoute

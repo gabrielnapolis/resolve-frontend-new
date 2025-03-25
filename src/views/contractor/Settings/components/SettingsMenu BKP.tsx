@@ -1,31 +1,31 @@
 import Menu from '@/components/ui/Menu'
 import ScrollBar from '@/components/ui/ScrollBar'
-import { useDashboardStore } from './store/dashboardStore'
+import { useSettingsStore } from '../store/settingsStore'
 import useQuery from '@/utils/hooks/useQuery'
 import {
     TbUserSquare,
+    TbLock,
+    TbBell,
     TbFileDollar,
-    TbHammer,
-    TbBook,
-    TbAlignBoxLeftTop,
+    TbRefreshDot,
 } from 'react-icons/tb'
-import type { View } from './types'
+import type { View } from '../types'
 import type { ReactNode } from 'react'
 
 const { MenuItem } = Menu
 
 const menuList: { label: string; value: View; icon: ReactNode }[] = [
-    { label: 'Painel', value: 'panel', icon: <TbAlignBoxLeftTop /> },
-    { label: 'Clientes', value: 'clients', icon: <TbUserSquare /> },
-    { label: 'Prestadores', value: 'contractor', icon: <TbHammer /> },
-    { label: 'Cadastro de Especialidades', value: 'speciality', icon: <TbBook /> },
-    { label: 'Gerenciador de Pagamentos', value: 'payments', icon: <TbFileDollar /> },
+    { label: 'Profile', value: 'profile', icon: <TbUserSquare /> },
+    { label: 'Security', value: 'security', icon: <TbLock /> },
+    { label: 'Notification', value: 'notification', icon: <TbBell /> },
+    { label: 'Billing', value: 'billing', icon: <TbFileDollar /> },
+    { label: 'Integration', value: 'integration', icon: <TbRefreshDot /> },
 ]
 
-export const TabMenu = ({ onChange }: { onChange?: () => void }) => {
+export const SettingsMenu = ({ onChange }: { onChange?: () => void }) => {
     const query = useQuery()
 
-    const { currentView, setCurrentView } = useDashboardStore()
+    const { currentView, setCurrentView } = useSettingsStore()
 
     const currentPath = query.get('category') || query.get('label') || 'inbox'
 
@@ -62,4 +62,4 @@ export const TabMenu = ({ onChange }: { onChange?: () => void }) => {
     )
 }
 
-export default TabMenu
+export default SettingsMenu

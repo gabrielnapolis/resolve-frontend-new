@@ -24,7 +24,7 @@ export const themeConfig: ThemeConfig = {
     panelExpand: false,
     controlSize: 'md',
     layout: {
-        type: THEME_ENUM.LAYOUT_CONTENT_OVERLAY,
+        type: THEME_ENUM.LAYOUT_STACKED_SIDE,
         sideNavCollapse: false,
     },
 }
