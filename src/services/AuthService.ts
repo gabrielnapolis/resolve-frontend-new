@@ -47,3 +47,29 @@ export async function apiResetPassword<T>(data: ResetPassword) {
         data,
     })
 }
+export const authFetch = async (url:string, options: any, onError?: any) => {
+    const token = localStorage.getItem('token'); 
+    const headers = {
+      ...options.headers,
+      Authorization: token ? `Bearer ${token}` : undefined,
+      'Content-Type': 'application/json',
+    };
+  
+    const updatedOptions = {
+      ...options,
+      headers,
+    };
+  
+    const response = await fetch(url, updatedOptions);
+  
+
+    if (!response.ok) {
+      if (onError) onError(response);
+      throw console.error(`Erro: ${response.status}`);
+    }
+  
+    const text = await response.text();
+    if (text.length === 0) return null;
+  
+    return JSON.parse(text);
+  };

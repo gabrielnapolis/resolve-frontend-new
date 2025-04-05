@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card} from "@/components/ui/card";
+import CardContent from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cancelSubscription, getSubscription } from "./actions";
 
@@ -34,9 +35,7 @@ export default function ActiveSubscription() {
     return (
         <>
             <Card>
-                <CardHeader>
-                    <CardTitle>Assinatura</CardTitle>
-                </CardHeader>
+           
                 <CardContent className="grid gap-6">
                     <h1>Sua assinatura está ativa!</h1>
                     <h3>

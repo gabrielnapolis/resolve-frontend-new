@@ -10,19 +10,16 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { InputMask } from "@react-input/mask";
-import { authFetch } from "@/lib/authFetch";
-import { useRouter } from "next/navigation";
 
-export default function PaymentCardForm() {
-  const router = useRouter();
+} from "@/components/ui/card";
+
+import { InputMask } from "@react-input/mask";
+
+import CardContent from "@/components/ui/card";
+import { authFetch } from "@/services/AuthService";
+
+const PaymentCardForm = ()=> {
+
   const formSchema = z.object({
     numberCard: z.string(),
     nameCard: z.string().min(4),
@@ -91,7 +88,7 @@ export default function PaymentCardForm() {
       configs.hasSubscription = true;
       localStorage.setItem('configs', JSON.stringify(configs))
 
-      router.push('/');
+     // router.push('/');
     } else {
       alert('Não foi possível realizar o pagamento no momento, tente novamente mais tarde.')
     }
@@ -100,14 +97,16 @@ export default function PaymentCardForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Assinatura via cartão</CardTitle>
-            <CardDescription>Insira seus dados e realize o pagamento.</CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-6">
+        <Card header={{
+              content: (<title>Assinatura via cartão</title> ),
+              className: undefined,
+              bordered: false,
+              extra: undefined
+        }} >
+        
+ <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="name">Nome</Label>
+              <label htmlFor="name">Nome</label>
               <Input
                 id="name"
                 placeholder="Insira o nome como está no Cartão"
@@ -115,7 +114,7 @@ export default function PaymentCardForm() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="number">Número do Cartão</Label>
+              <label htmlFor="number">Número do Cartão</label>
               <Input
                 id="number"
                 placeholder="Inisra o número do cartão"
@@ -123,7 +122,7 @@ export default function PaymentCardForm() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="number">CPF</Label>
+              <label htmlFor="number">CPF</label>
               <InputMask
                 component={Input}
                 mask="___.___.___-__"
@@ -134,7 +133,7 @@ export default function PaymentCardForm() {
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="month">Mês</Label>
+                <label htmlFor="month">Mês</label>
                 <select id="month" {...register("dateMonth")}>
                   <option value="1">01</option>
                   <option value="2">02</option>
@@ -151,7 +150,7 @@ export default function PaymentCardForm() {
                 </select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="year">Ano</Label>
+                <label htmlFor="year">Ano</label>
                 <select id="year" {...register("dateYear")}>
                   {Array.from({ length: 10 }, (_, i) => (
                     <option
@@ -165,7 +164,7 @@ export default function PaymentCardForm() {
                 </select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="cvc">CVC</Label>
+                <label htmlFor="cvc">CVC</label>
                 <Input
                   id="cvc"
                   placeholder="CVC"
@@ -173,15 +172,19 @@ export default function PaymentCardForm() {
                 />
               </div>
             </div>
-          </CardContent>
+        
           <div className="flex justify-center mb-5 gap-4">
-            <Button variant={"outline"} type="button">
+            <Button variant={"solid"} type="button">
               Voltar
             </Button>
             <Button>Realizar Pagamento</Button>
           </div>
+          </CardContent>
         </Card>
       </form>
     </>
   );
 }
+
+
+export default PaymentCardForm

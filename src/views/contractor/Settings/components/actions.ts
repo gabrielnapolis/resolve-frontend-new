@@ -1,4 +1,4 @@
-import { authFetch } from "@/lib/authFetch";
+import { authFetch } from "@/services/AuthService";
 
 export async function validatePayment(id: string): Promise<any> {
     const res = await authFetch(
