@@ -17,6 +17,8 @@ import { InputMask } from "@react-input/mask";
 
 import CardContent from "@/components/ui/card";
 import { authFetch } from "@/services/AuthService";
+import dotenv from 'dotenv'
+
 
 const PaymentCardForm = ()=> {
 
@@ -49,7 +51,7 @@ const PaymentCardForm = ()=> {
     }
 
     let cardData = {
-      publicKey: process.env.NEXT_PUBLIC_PB_KEY,
+      publicKey: import.meta.env.NEXT_PUBLIC_PB_KEY,
       holder: data.nameCard,
       number: data.numberCard.replace(/[^\d.-]+/g, ''),
       expMonth: data.dateMonth,
@@ -61,12 +63,12 @@ const PaymentCardForm = ()=> {
     const encrypted = card.encryptedCard;
     const hasErrors = card.hasErrors;
     if (hasErrors) {
-      alert('Não foi possível realizar o pagamento. ' + card.errors.join(' '));
+      alert('Não foi possível realizar o pagamento. ' + JSON.stringify(card.errors));
       console.log(hasErrors);
       return;
     }
 
-    const url = process.env.NEXT_PUBLIC_API;
+    const url = import.meta.env.NEXT_PUBLIC_API;
     let response = await authFetch(`${url}/payment/subscribe`, {
       method: "POST",
       body: JSON.stringify(
@@ -90,6 +92,7 @@ const PaymentCardForm = ()=> {
 
      // router.push('/');
     } else {
+      console.log(response.error)
       alert('Não foi possível realizar o pagamento no momento, tente novamente mais tarde.')
     }
   }

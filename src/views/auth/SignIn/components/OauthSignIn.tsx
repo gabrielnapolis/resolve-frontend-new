@@ -17,17 +17,23 @@ const OauthSignIn = ({ setMessage, disableSubmit }: OauthSignInProps) => {
         if (!disableSubmit) {
             oAuthSignIn(async ({ redirect, onSignIn }) => {
                 try {
+                    window.location.href = "http://localhost:3001/auth/google"; // Backend endpoint
                     const resp = await apiGoogleOauthSignIn()
                     if (resp) {
                         const { token, user } = resp
                         onSignIn({ accessToken: token }, user)
-                        redirect()
+                       // redirect()
                     }
                 } catch (error) {
                     setMessage?.((error as string)?.toString() || '')
                 }
             })
         }
+    }
+
+    const handleFacebookSignIn = async () => {
+        window.location.href = "http://localhost:3001/auth/google"; 
+   
     }
 
     const handleGithubSignIn = async () => {
@@ -66,7 +72,7 @@ const OauthSignIn = ({ setMessage, disableSubmit }: OauthSignInProps) => {
             <Button
                 className="flex-1"
                 type="button"
-                onClick={handleGithubSignIn}
+                onClick={handleFacebookSignIn}
             >
                 <div className="flex items-center justify-center gap-2">
                     <img
