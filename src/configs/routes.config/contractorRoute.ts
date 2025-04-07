@@ -1,8 +1,6 @@
 import { lazy } from 'react'
-import { DASHBOARDS_PREFIX_PATH } from '@/constants/route.constant'
 import { ADMIN, USER } from '@/constants/roles.constant'
 import type { Routes } from '@/@types/routes'
-import { ex } from '@fullcalendar/core/internal-common'
 
 const contractorRoute: Routes = [
     {
