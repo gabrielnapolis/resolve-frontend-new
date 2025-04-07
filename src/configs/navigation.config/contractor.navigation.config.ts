@@ -12,8 +12,8 @@ const contractorNavigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [
             {
-                key: 'contractor.settings',
-                path: '/contractor/settings',
+                key: 'contractor.profile',
+                path: '/contractor/profile',
                 title: 'Perfil',
                 translateKey: '',
                 icon: 'uiDataDisplayAvatar',

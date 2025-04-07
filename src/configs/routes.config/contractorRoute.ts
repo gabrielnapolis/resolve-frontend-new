@@ -6,14 +6,11 @@ import { ex } from '@fullcalendar/core/internal-common'
 
 const contractorRoute: Routes = [
     {
-        key: 'contractor.settings',
-        path: 'contractor/settings',
-        component: lazy(() => import('@/views/contractor/Settings')),
+        key: 'contractor.profile',
+        path: 'contractor/profile',
+        component: lazy(() => import('@/views/contractor/ContractorProfile')),
         authority: [ADMIN, USER],
         meta: {
-            header: {
-                title: 'Settings',
-            },
             pageContainerType: 'contained',
         },
     },
