@@ -1,46 +1,46 @@
-import { apiGetCustomersList } from '@/services/CustomersService'
 import useSWR from 'swr'
-import { useCustomerListStore } from '../store/customerListStore'
+import { useContractorListStore } from '../store/contractorListStore'
 import type { GetContractorColumnsListResponse } from '../types'
 import type { TableQueries } from '@/@types/common'
+import { apiGetContractorsList } from '@/services/ContractorService'
 
-export default function useCustomerList() {
+export default function useContractorList() {
     const {
         tableData,
         filterData,
         setTableData,
-        selectedCustomer,
-        setSelectedCustomer,
-        setSelectAllCustomer,
+        selectedContractor,
+        setSelectedContractor,
+        setSelectAllContractor,
         setFilterData,
-    } = useCustomerListStore((state) => state)
+    } = useContractorListStore((state) => state)
 
     const { data, error, isLoading, mutate } = useSWR(
         ['/api/customers', { ...tableData, ...filterData }],
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         ([_, params]) =>
-            apiGetCustomersList<GetContractorColumnsListResponse, TableQueries>(params),
+            apiGetContractorsList(params),
         {
             revalidateOnFocus: false,
         },
     )
 
-    const customerList = data?.list || []
+    const contractorList = data?.list || []
 
-    const customerListTotal = data?.total || 0
+    const contractorListTotal = data?.total || 0
 
     return {
-        customerList,
-        customerListTotal,
+        contractorList,
+        contractorListTotal,
         error,
         isLoading,
         tableData,
         filterData,
         mutate,
         setTableData,
-        selectedCustomer,
-        setSelectedCustomer,
-        setSelectAllCustomer,
+        selectedContractor,
+        setSelectedContractor,
+        setSelectAllContractor,
         setFilterData,
     }
 }

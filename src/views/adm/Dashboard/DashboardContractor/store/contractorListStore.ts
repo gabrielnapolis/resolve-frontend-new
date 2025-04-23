@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { TableQueries } from '@/@types/common'
-import type { Customer, Filter } from '../types'
+import type { ContractorColumns, Filter } from '../types'
 
 export const initialTableData: TableQueries = {
     pageIndex: 1,
@@ -23,36 +23,36 @@ export const initialFilterData = {
     ],
 }
 
-export type CustomersListState = {
+export type ContractorListState = {
     tableData: TableQueries
     filterData: Filter
-    selectedCustomer: Partial<Customer>[]
+    selectedContractor: Partial<ContractorColumns>[]
 }
 
-type CustomersListAction = {
+type ContractorListAction = {
     setFilterData: (payload: Filter) => void
     setTableData: (payload: TableQueries) => void
-    setSelectedCustomer: (checked: boolean, customer: Customer) => void
-    setSelectAllCustomer: (customer: Customer[]) => void
+    setSelectedContractor: (checked: boolean, customer: ContractorColumns) => void
+    setSelectAllContractor: (customer: ContractorColumns[]) => void
 }
 
-const initialState: CustomersListState = {
+const initialState: ContractorListState = {
     tableData: initialTableData,
     filterData: initialFilterData,
-    selectedCustomer: [],
+    selectedContractor: [],
 }
 
-export const useCustomerListStore = create<
-    CustomersListState & CustomersListAction
+export const useContractorListStore = create<
+    ContractorListState & ContractorListAction
 >((set) => ({
     ...initialState,
     setFilterData: (payload) => set(() => ({ filterData: payload })),
     setTableData: (payload) => set(() => ({ tableData: payload })),
-    setSelectedCustomer: (checked, row) =>
+    setSelectedContractor: (checked, row) =>
         set((state) => {
-            const prevData = state.selectedCustomer
+            const prevData = state.selectedContractor
             if (checked) {
-                return { selectedCustomer: [...prevData, ...[row]] }
+                return { selectedContractor: [...prevData, ...[row]] }
             } else {
                 if (
                     prevData.some((prevCustomer) => row.id === prevCustomer.id)
@@ -66,5 +66,5 @@ export const useCustomerListStore = create<
                 return { selectedCustomer: prevData }
             }
         }),
-    setSelectAllCustomer: (row) => set(() => ({ selectedCustomer: row })),
+        setSelectAllContractor: (row) => set(() => ({ selectedContractor: row })),
 }))

@@ -142,7 +142,7 @@ const SettingsProfile = () => {
             <AdaptiveCard className="h-full">
                 <div className="flex flex-auto h-full">
                     <div className="ltr:xl:pl-6 rtl:xl:pr-6 flex-1 py-2">
-                        <h4 className="mb-8">Personal information</h4>
+                        <h4 className="mb-8">Informações Pessoais</h4>
                         <Form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-8">
                                 <Controller
@@ -177,7 +177,7 @@ const SettingsProfile = () => {
                                                         type="button"
                                                         icon={<TbPlus />}
                                                     >
-                                                        Upload Image
+                                                        Selecionar Foto
                                                     </Button>
                                                 </Upload>
                                                 <Button
@@ -187,7 +187,7 @@ const SettingsProfile = () => {
                                                         field.onChange('')
                                                     }}
                                                 >
-                                                    Remove
+                                                    Remover
                                                 </Button>
                                             </div>
                                         </div>

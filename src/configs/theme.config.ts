@@ -24,11 +24,13 @@ export const themeConfig: ThemeConfig = {
     panelExpand: false,
     controlSize: 'md',
     layout: {
-        type: THEME_ENUM.LAYOUT_CONTENT_OVERLAY,
+        type: THEME_ENUM.LAYOUT_COLLAPSIBLE_SIDE,
         sideNavCollapse: false,
     },
 }
 
+
+  
   
             
 

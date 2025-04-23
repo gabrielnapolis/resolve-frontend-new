@@ -1,11 +1,14 @@
 import AdaptiveCard from '@/components/shared/AdaptiveCard'
 import Container from '@/components/shared/Container'
-import CustomerListTable from './components/CustomerListTable'
-import CustomerListActionTools from './components/CustomerListActionTools'
-import CustomersListTableTools from './components/CustomersListTableTools'
-import CustomerListSelected from './components/CustomerListSelected'
+import ContractorListTableListTable from './components/ContractorListTableListTable'
+import ContractorListActionTools from './components/ContractorListActionTools'
+import ContractorListTableTools from './components/ContractorListTableTools'
+import ContractorListSelected from './components/ContractorListSelected'
+import useSWR from 'swr'
+
 
 const DashboardContractor = () => {
+
     return (
         <>
           <Container>
@@ -13,14 +16,14 @@ const DashboardContractor = () => {
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                             <h3>Prestadores</h3>
-                            <CustomerListActionTools />
+                            <ContractorListActionTools />
                         </div>
-                        <CustomersListTableTools />
-                        <CustomerListTable />
+                        <ContractorListTableTools />
+                        {/* <ContractorListTableListTable className="mt-4" data={data}/> */}
                     </div>
                 </AdaptiveCard>
             </Container>
-            <CustomerListSelected />
+            <ContractorListSelected />
         </>
     )
 }

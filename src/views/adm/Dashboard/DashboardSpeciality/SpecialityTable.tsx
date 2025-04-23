@@ -31,16 +31,6 @@ const columns = [
             <span className="font-semibold">{props.getValue()}</span>
         ),
     }),
-    columnHelper.accessor('logoPath', {
-        header: 'Imagem',
-        cell: (props) => (
-            <img
-                src={props.getValue() || '/img/default-tools.png'}
-                alt={props.row.original.fullname}
-                className="w-10 h-10 object-cover"
-            />
-        ),
-    }),
     columnHelper.display({
         id: 'actions',
         header: 'Ações',
