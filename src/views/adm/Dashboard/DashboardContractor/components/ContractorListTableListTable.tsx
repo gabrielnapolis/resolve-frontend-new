@@ -117,8 +117,8 @@ const ContractorListTable = () => {
                 accessorKey: 'fone',
             },
             {
-                header: 'Endereço',
-                accessorKey: 'address',
+                header: 'Cidade',
+                accessorKey: 'city',
             },
             {
                 header: 'Status',
