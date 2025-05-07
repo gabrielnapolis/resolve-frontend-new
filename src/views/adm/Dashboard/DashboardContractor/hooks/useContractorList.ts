@@ -16,16 +16,17 @@ export default function useContractorList() {
     } = useContractorListStore((state) => state)
 
     const { data, error, isLoading, mutate } = useSWR(
-        ['/api/customers', { ...tableData, ...filterData }],
+        ['', { ...tableData, ...filterData }],
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         ([_, params]) =>
-            apiGetContractorsList(params),
+            apiGetContractorsList<GetContractorColumnsListResponse, TableQueries>(),
         {
             revalidateOnFocus: false,
         },
     )
 
-    const contractorList = data?.list || []
+    console.log('contractorList', data);
+    const contractorList = data || []
 
     const contractorListTotal = data?.total || 0
 

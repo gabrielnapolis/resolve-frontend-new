@@ -19,7 +19,7 @@ const DashboardContractor = () => {
                             <ContractorListActionTools />
                         </div>
                         <ContractorListTableTools />
-                        {/* <ContractorListTableListTable className="mt-4" data={data}/> */}
+                        <ContractorListTableListTable/>
                     </div>
                 </AdaptiveCard>
             </Container>

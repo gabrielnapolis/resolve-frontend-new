@@ -11,7 +11,7 @@ const ContractorListActionTools = () => {
 
     return (
         <div className="flex flex-col md:flex-row gap-3">
-            <CSVLink
+            {/* <CSVLink
                 className="w-full"
                 filename="customerList.csv"
                 data={contractorList}
@@ -22,11 +22,11 @@ const ContractorListActionTools = () => {
                 >
                     Download
                 </Button>
-            </CSVLink>
+            </CSVLink> */}
             <Button
                 variant="solid"
                 icon={<TbUserPlus className="text-xl" />}
-                onClick={() => navigate('/concepts/customers/customer-create')}
+                onClick={() => navigate('/create-contractor')}
             >
                 Adicionar Novo
             </Button>

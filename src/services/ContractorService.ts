@@ -10,17 +10,9 @@ interface ContractorParams extends TableQueries {
     }
 }
 
-export async function apiGetContractorsList(
-    params: ContractorParams
-): Promise<GetContractorColumnsListResponse> {
-    return ApiService.fetchDataWithAxios({
+export async function apiGetContractorsList<T, GetContractorColumnsListResponse>() {
+    return ApiService.fetchDataWithAxios<T>({
         url: '/contractor',
         method: 'get',
-        params: {
-            page: params.pageIndex,
-            limit: params.pageSize,
-            search: params.query,
-            ...params.filters
-        }
     })
-}
+}   

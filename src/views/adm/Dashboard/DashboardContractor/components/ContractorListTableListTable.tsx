@@ -43,7 +43,7 @@ const ActionColumn = ({
     onViewDetail: () => void
 }) => {
     return (
-        <div className="flex justify-center gap-3">
+        <div className="flex gap-3">
             <Tooltip title="Editar">
                 <div
                     className={`text-xl cursor-pointer select-none font-semibold`}
@@ -75,7 +75,8 @@ const ActionColumn = ({
     )
 }
 
-const ContractorListTable = ({ data = [], ...rest }: ContractorTableProps) => {
+const ContractorListTable = () => {
+    
     const navigate = useNavigate()
 
     const {
@@ -88,7 +89,7 @@ const ContractorListTable = ({ data = [], ...rest }: ContractorTableProps) => {
         setSelectedContractor,
         selectedContractor,
     } = useContractorList()
-
+    
     const handleEdit = (contractor: ContractorColumns) => {
         
     }
@@ -113,11 +114,11 @@ const ContractorListTable = ({ data = [], ...rest }: ContractorTableProps) => {
             },
             {
                 header: 'Telefone',
-                accessorKey: 'phoneNumber',
+                accessorKey: 'fone',
             },
             {
                 header: 'Endereço',
-                accessorKey: 'personalInfo.location',
+                accessorKey: 'address',
             },
             {
                 header: 'Status',
@@ -193,8 +194,8 @@ const ContractorListTable = ({ data = [], ...rest }: ContractorTableProps) => {
         <DataTable
             selectable
             columns={columns}
-            data={contractorList}
-            noData={!isLoading && contractorList.length === 0}
+            data={contractorList as ContractorColumns[]}
+            noData={!isLoading && Array.isArray(contractorList) && contractorList.length === 0}
             skeletonAvatarColumns={[0]}
             skeletonAvatarProps={{ width: 28, height: 28 }}
             loading={isLoading}
