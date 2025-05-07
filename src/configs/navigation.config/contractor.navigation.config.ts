@@ -5,7 +5,7 @@ const contractorNavigationConfig: NavigationTree[] = [
     {
         key: 'dashboardContractor',
         path: '/contractor/dashboard',
-        title: 'Dashboard Prestador',
+        title: 'Área do Prestador',
         translateKey: 'nav.createContractor',
         icon: 'singleMenu',
         type: NAV_ITEM_TYPE_TITLE,
