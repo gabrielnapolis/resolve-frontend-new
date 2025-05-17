@@ -25,6 +25,12 @@ export const protectedRoutes: Routes = [
         component: lazy(() => import('@/views/contractor/ContractorCreate')),
         authority: [],
     },
+    {
+        key: 'create.contractor.plans',
+        path: '/create-contractor/plans',
+        component: lazy(() => import('@/views/contractor/ContractorPlans')),
+        authority: [],
+    },
     ...infoRoute,
     ...contractorRoute,
     ...dashboardRoute,

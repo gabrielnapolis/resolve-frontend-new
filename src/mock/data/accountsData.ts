@@ -286,11 +286,11 @@ export const pricingPlansData = {
     plans: [
         {
             id: 'basic',
-            name: 'Basic',
+            name: 'Básico',
             description:
                 'Ideal for individuals or small teams. Includes essential task and project management features.',
             price: {
-                monthly: 59,
+                monthly: 20,
                 annually: 500,
             },
             features: [
@@ -303,11 +303,11 @@ export const pricingPlansData = {
         },
         {
             id: 'standard',
-            name: 'Standard',
+            name: 'Intermediário',
             description:
                 'Perfect for growing teams. Offers advanced features for better productivity and collaboration.',
             price: {
-                monthly: 79,
+                monthly: 50,
                 annually: 700,
             },
             features: [
@@ -325,7 +325,7 @@ export const pricingPlansData = {
             description:
                 'Best for large teams. Includes premium features and dedicated support for optimal workflow.',
             price: {
-                monthly: 129,
+                monthly: 100,
                 annually: 1000,
             },
             features: [
