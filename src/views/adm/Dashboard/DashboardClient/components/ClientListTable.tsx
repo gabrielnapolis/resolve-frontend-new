@@ -8,26 +8,28 @@ import cloneDeep from 'lodash/cloneDeep'
 import { TbPencil, TbEye, TbLock } from 'react-icons/tb'
 import type { OnSortParam, ColumnDef, Row } from '@/components/shared/DataTable'
 import type { TableQueries } from '@/@types/common'
-import useContractorList from '../hooks/useContractorList'
-import { ContractorColumns } from '../types'
+
+import { ClientColumns } from '../types'
+import useClientList from '../hooks/useClientList'
 
 
-type ContractorTableProps = {
-    data: ContractorColumns[]
+type ClientTableProps = {
+    data: ClientColumns[]
     className?: string
-} 
+}
+
 const statusColor: Record<string, string> = {
     active: 'bg-emerald-200 dark:bg-emerald-200 text-gray-900 dark:text-gray-900',
     blocked: 'bg-red-200 dark:bg-red-200 text-gray-900 dark:text-gray-900',
 }
 
-const NameColumn = ({ row }: { row: ContractorColumns }) => {
+const NameColumn = ({ row }: { row: ClientColumns }) => {
     return (
         <div className="flex items-center">
             <Avatar size={40} shape="circle" src={'/img/default-avatar.png'} />
             <Link
                 className={`hover:text-primary ml-2 rtl:mr-2 font-semibold text-gray-900 dark:text-gray-100`}
-                to={`/concepts/customers/customer-details/${row.id}`}
+                to={`/concepts/clients/client-details/${row.id}`}
             >
                 {row.fullname}
             </Link>
@@ -75,34 +77,33 @@ const ActionColumn = ({
     )
 }
 
-const ContractorListTable = () => {
-    
+const ClientListTable = () => {
     const navigate = useNavigate()
 
     const {
-        contractorList,
-        contractorListTotal,
+        clientList,
+        clientListTotal,
         tableData,
         isLoading,
         setTableData,
-        setSelectAllContractor,
-        setSelectedContractor,
-        selectedContractor,
-    } = useContractorList()
-    
-    const handleEdit = (contractor: ContractorColumns) => {
-        
+        setSelectAllClient,
+        setSelectedClient,
+        selectedClient,
+    } = useClientList()
+
+    const handleEdit = (client: ClientColumns) => {
+        // Implement edit logic
     }
 
-    const handleViewDetails = (contractor: ContractorColumns) => {
-       
+    const handleViewDetails = (client: ClientColumns) => {
+        // Implement view details logic
     }
 
-    const columns: ColumnDef<ContractorColumns>[] = useMemo(
+    const columns: ColumnDef<ClientColumns>[] = useMemo(
         () => [
             {
                 header: 'Nome',
-                accessorKey: 'name',
+                accessorKey: 'fullname',
                 cell: (props) => {
                     const row = props.row.original
                     return <NameColumn row={row} />
@@ -125,28 +126,12 @@ const ContractorListTable = () => {
                 accessorKey: 'state',
             },
             {
-                header: 'Status',
-                accessorKey: 'status',
-                cell: (props) => {
-                    const row = props.row.original
-                    return (
-                        <div className="flex items-center">
-                            <Tag className={row.active ? statusColor.active : statusColor.blocked}>
-                                <span className="capitalize">{row.active ? 'Ativo' : 'Inativo'}</span>
-                            </Tag>
-                        </div>
-                    )
-                },
-            },
-            {
                 header: 'Ações',
                 id: 'action',
                 cell: (props) => (
                     <ActionColumn
                         onEdit={() => handleEdit(props.row.original)}
-                        onViewDetail={() =>
-                            handleViewDetails(props.row.original)
-                        }
+                        onViewDetail={() => handleViewDetails(props.row.original)}
                     />
                 ),
             },
@@ -157,8 +142,8 @@ const ContractorListTable = () => {
 
     const handleSetTableData = (data: TableQueries) => {
         setTableData(data)
-        if (selectedContractor.length > 0) {
-            setSelectAllContractor([])
+        if (selectedClient.length > 0) {
+            setSelectAllClient([])
         }
     }
 
@@ -181,16 +166,16 @@ const ContractorListTable = () => {
         handleSetTableData(newTableData)
     }
 
-    const handleRowSelect = (checked: boolean, row: ContractorColumns) => {
-        setSelectedContractor(checked, row as ContractorColumns)
+    const handleRowSelect = (checked: boolean, row: ClientColumns) => {
+        setSelectedClient(checked, row as ClientColumns)
     }
 
-    const handleAllRowSelect = (checked: boolean, rows: Row<ContractorColumns>[]) => {
+    const handleAllRowSelect = (checked: boolean, rows: Row<ClientColumns>[]) => {
         if (checked) {
             const originalRows = rows.map((row) => row.original)
-            setSelectAllContractor(originalRows)
+            setSelectAllClient(originalRows)
         } else {
-            setSelectAllContractor([])
+            setSelectAllClient([])
         }
     }
 
@@ -198,18 +183,18 @@ const ContractorListTable = () => {
         <DataTable
             selectable
             columns={columns}
-            data={contractorList as ContractorColumns[]}
-            noData={!isLoading && Array.isArray(contractorList) && contractorList.length === 0}
+            data={clientList as ClientColumns[]}
+            noData={!isLoading && Array.isArray(clientList) && clientList.length === 0}
             skeletonAvatarColumns={[0]}
             skeletonAvatarProps={{ width: 28, height: 28 }}
             loading={isLoading}
             pagingData={{
-                total: contractorListTotal,
+                total: clientListTotal,
                 pageIndex: tableData.pageIndex as number,
                 pageSize: tableData.pageSize as number,
             }}
             checkboxChecked={(row) =>
-                selectedContractor.some((selected) => selected.id === row.id)
+                selectedClient.some((selected) => selected.id === row.id)
             }
             onPaginationChange={handlePaginationChange}
             onSelectChange={handleSelectChange}
@@ -220,4 +205,4 @@ const ContractorListTable = () => {
     )
 }
 
-export default ContractorListTable
+export default ClientListTable

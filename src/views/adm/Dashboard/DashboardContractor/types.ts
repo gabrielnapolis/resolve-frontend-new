@@ -10,6 +10,7 @@ export type Filter = {
 
 export type ContractorColumns = {
     id: number
+    img: string
     picture: string
     fullname: string
     email: string

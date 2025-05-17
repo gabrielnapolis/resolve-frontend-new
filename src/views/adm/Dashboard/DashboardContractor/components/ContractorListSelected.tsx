@@ -33,11 +33,13 @@ const ContractorListSelected = () => {
     }
 
     const handleConfirmDelete = () => {
-        const newCustomerList = contractorList.filter((customer: any) => {
-            return !selectedContractor.some(
-                (selected) => selected.id === customer.id,
-            )
-        })
+        const newCustomerList = Array.isArray(contractorList)
+            ? contractorList.filter((customer: any) => {
+                  return !selectedContractor.some(
+                      (selected) => selected.id === customer.id,
+                  )
+              })
+            : []
         setSelectAllContractor([])
         mutate(
             {
