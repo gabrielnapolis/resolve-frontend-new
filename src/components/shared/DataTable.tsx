@@ -144,7 +144,7 @@ function DataTable<T>(props: DataTableProps<T>) {
         () =>
             pageSizes.map((number) => ({
                 value: number,
-                label: `${number} / page`,
+                label: `${number} por página`,
             })),
         [pageSizes],
     )

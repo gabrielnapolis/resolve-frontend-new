@@ -3,14 +3,19 @@ import Avatar from '@/components/ui/Avatar'
 import Tag from '@/components/ui/Tag'
 import Tooltip from '@/components/ui/Tooltip'
 import DataTable from '@/components/shared/DataTable'
-import useCustomerList from '../hooks/useCustomerList'
 import { Link, useNavigate } from 'react-router-dom'
 import cloneDeep from 'lodash/cloneDeep'
 import { TbPencil, TbEye, TbLock } from 'react-icons/tb'
 import type { OnSortParam, ColumnDef, Row } from '@/components/shared/DataTable'
-import type { ContractorColumns } from '../types'
 import type { TableQueries } from '@/@types/common'
+import useContractorList from '../hooks/useContractorList'
+import { ContractorColumns } from '../types'
 
+
+type ContractorTableProps = {
+    data: ContractorColumns[]
+    className?: string
+} 
 const statusColor: Record<string, string> = {
     active: 'bg-emerald-200 dark:bg-emerald-200 text-gray-900 dark:text-gray-900',
     blocked: 'bg-red-200 dark:bg-red-200 text-gray-900 dark:text-gray-900',
@@ -24,7 +29,7 @@ const NameColumn = ({ row }: { row: ContractorColumns }) => {
                 className={`hover:text-primary ml-2 rtl:mr-2 font-semibold text-gray-900 dark:text-gray-100`}
                 to={`/concepts/customers/customer-details/${row.id}`}
             >
-                {row.name}
+                {row.fullname}
             </Link>
         </div>
     )
@@ -38,7 +43,7 @@ const ActionColumn = ({
     onViewDetail: () => void
 }) => {
     return (
-        <div className="flex justify-center gap-3">
+        <div className="flex gap-3">
             <Tooltip title="Editar">
                 <div
                     className={`text-xl cursor-pointer select-none font-semibold`}
@@ -70,20 +75,21 @@ const ActionColumn = ({
     )
 }
 
-const CustomerListTable = () => {
+const ContractorListTable = () => {
+    
     const navigate = useNavigate()
 
     const {
-        customerList,
-        customerListTotal,
+        contractorList,
+        contractorListTotal,
         tableData,
         isLoading,
         setTableData,
-        setSelectAllCustomer,
-        setSelectedCustomer,
-        selectedCustomer,
-    } = useCustomerList()
-
+        setSelectAllContractor,
+        setSelectedContractor,
+        selectedContractor,
+    } = useContractorList()
+    
     const handleEdit = (contractor: ContractorColumns) => {
         
     }
@@ -108,11 +114,15 @@ const CustomerListTable = () => {
             },
             {
                 header: 'Telefone',
-                accessorKey: 'phoneNumber',
+                accessorKey: 'fone',
             },
             {
-                header: 'Localização',
-                accessorKey: 'personalInfo.location',
+                header: 'Cidade',
+                accessorKey: 'city',
+            },
+            {
+                header: 'Estado',
+                accessorKey: 'state',
             },
             {
                 header: 'Status',
@@ -121,8 +131,8 @@ const CustomerListTable = () => {
                     const row = props.row.original
                     return (
                         <div className="flex items-center">
-                            <Tag className={row.status == 1 ? statusColor.active : statusColor.blocked}>
-                                <span className="capitalize">{row.status == 1 ? 'Ativo' : 'Inativo'}</span>
+                            <Tag className={row.active ? statusColor.active : statusColor.blocked}>
+                                <span className="capitalize">{row.active ? 'Ativo' : 'Inativo'}</span>
                             </Tag>
                         </div>
                     )
@@ -147,8 +157,8 @@ const CustomerListTable = () => {
 
     const handleSetTableData = (data: TableQueries) => {
         setTableData(data)
-        if (selectedCustomer.length > 0) {
-            setSelectAllCustomer([])
+        if (selectedContractor.length > 0) {
+            setSelectAllContractor([])
         }
     }
 
@@ -172,15 +182,15 @@ const CustomerListTable = () => {
     }
 
     const handleRowSelect = (checked: boolean, row: ContractorColumns) => {
-        setSelectedCustomer(checked, row)
+        setSelectedContractor(checked, row as ContractorColumns)
     }
 
     const handleAllRowSelect = (checked: boolean, rows: Row<ContractorColumns>[]) => {
         if (checked) {
             const originalRows = rows.map((row) => row.original)
-            setSelectAllCustomer(originalRows)
+            setSelectAllContractor(originalRows)
         } else {
-            setSelectAllCustomer([])
+            setSelectAllContractor([])
         }
     }
 
@@ -188,18 +198,18 @@ const CustomerListTable = () => {
         <DataTable
             selectable
             columns={columns}
-            data={customerList}
-            noData={!isLoading && customerList.length === 0}
+            data={contractorList as ContractorColumns[]}
+            noData={!isLoading && Array.isArray(contractorList) && contractorList.length === 0}
             skeletonAvatarColumns={[0]}
             skeletonAvatarProps={{ width: 28, height: 28 }}
             loading={isLoading}
             pagingData={{
-                total: customerListTotal,
+                total: contractorListTotal,
                 pageIndex: tableData.pageIndex as number,
                 pageSize: tableData.pageSize as number,
             }}
             checkboxChecked={(row) =>
-                selectedCustomer.some((selected) => selected.id === row.id)
+                selectedContractor.some((selected) => selected.id === row.id)
             }
             onPaginationChange={handlePaginationChange}
             onSelectChange={handleSelectChange}
@@ -210,4 +220,4 @@ const CustomerListTable = () => {
     )
 }
 
-export default CustomerListTable
+export default ContractorListTable

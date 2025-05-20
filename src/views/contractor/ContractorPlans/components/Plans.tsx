@@ -45,23 +45,23 @@ const Plans = () => {
                             <span>{plan.name}</span>
                             {plan.recommended && (
                                 <Tag className="rounded-full bg-green-200 font-bold">
-                                    Recommended
+                                    Recomendado
                                 </Tag>
                             )}
                         </h5>
-                        <div className="">{plan.description}</div>
+                        {/* <div className="">{plan.description}</div> */}
                         <div className="mt-6">
                             <NumericFormat
                                 className="h1"
                                 displayType="text"
                                 value={plan.price[paymentCycle]}
-                                prefix={'$'}
+                                prefix={'R$ '}
                                 thousandSeparator={true}
                             />
                             <span className="text-lg font-bold">
                                 {' '}
                                 /{' '}
-                                {paymentCycle === 'monthly' ? 'month' : 'year'}
+                               {plan.paymentCycle}
                             </span>
                         </div>
                         <div className="flex flex-col gap-4 border-t border-gray-200 dark:border-gray-700 mt-6 pt-6">
@@ -112,8 +112,8 @@ const Plans = () => {
                             }}
                         >
                             {subcription === plan.id && cycle === paymentCycle
-                                ? 'Current plan'
-                                : 'Select plan'}
+                                ? 'Plano atual'
+                                : 'Escolher plano'}
                         </Button>
                     </div>
                 </div>

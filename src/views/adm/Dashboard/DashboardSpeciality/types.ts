@@ -3,7 +3,6 @@ import type { Control, FieldErrors } from 'react-hook-form'
 export type SpecialityFields = {
     id?: number
     fullname: string
-    logoPath?: string
 }
 
 export type SpecialityFormSchema = SpecialityFields

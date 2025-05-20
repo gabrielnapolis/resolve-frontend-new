@@ -26,7 +26,7 @@ const dashboardRoute: Routes = [
         path: '/admin/dashboard/clients',
         component: lazy(
             () =>
-                import('@/views/adm/Dashboard/DasboardClient/DashboardClients'),
+                import('@/views/adm/Dashboard/DashboardClient/DashboardClient'),
         ),
         authority: [],
     },

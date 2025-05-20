@@ -30,7 +30,7 @@ const Question = (props: QuestionProps) => {
                 onClick={() => setExpand(!expand)}
             >
                 <span className="text-2xl">
-                    {expand ? <TbPlus /> : <TbMinus />}
+                    {expand ? < TbMinus/> : <TbPlus />}
                 </span>
                 <span className="group-hover:text-primary">{title}</span>
             </div>

@@ -1,23 +1,25 @@
 import type { Control, FieldErrors } from 'react-hook-form'
+import { SpecialityFields } from '../../DashboardSpeciality/types'
 
 export type ContractorFields = {
     id?: number
     picture: string
     fullname: string
-    birthday?: string
-    fone: string
+    birthday: string
     cpf: string
     email: string
-    emailConfirm: string
-    description?: string
+    commercialName: string
+    description: string
     password: string
-    passwordConfirm: string
+    cep: string
+    address: string
     state: string
     city: string
-    address: string
-    cep?: string
     neighborhood: string
-    specialities: number []
+    region: string
+    specialities: SpecialityFields[]
+    isAdmin: boolean
+    active: boolean
 }
 
 export type ContractorFormSchema = ContractorFields

@@ -4,7 +4,7 @@ import Dialog from '@/components/ui/Dialog'
 import Checkbox from '@/components/ui/Checkbox'
 import Input from '@/components/ui/Input'
 import { Form, FormItem } from '@/components/ui/Form'
-import useCustomerList from '../hooks/useCustomerList'
+import useContractorList from '../hooks/useContractorList'
 import { TbFilter } from 'react-icons/tb'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,27 +12,30 @@ import { z } from 'zod'
 import type { ZodType } from 'zod'
 
 type FormSchema = {
-    purchasedProducts: string
-    purchaseChannel: Array<string>
+    specialities: Array<string>
+    status: Array<string>
 }
 
-const channelList = [
-    'Retail Stores',
-    'Online Retailers',
-    'Resellers',
-    'Mobile Apps',
-    'Direct Sales',
+const specialities = [
+    'Pedreiro',
+    'Marceneiro',
+    'Eletricista',
+]
+
+const status = [
+    'Ativo',
+    'Inativo',
 ]
 
 const validationSchema: ZodType<FormSchema> = z.object({
-    purchasedProducts: z.string(),
-    purchaseChannel: z.array(z.string()),
+    status: z.array(z.string()),
+    specialities: z.array(z.string()),
 })
 
-const CustomerListTableFilter = () => {
+const ContractorListTableFilter = () => {
     const [dialogIsOpen, setIsOpen] = useState(false)
 
-    const { filterData, setFilterData } = useCustomerList()
+    const { filterData, setFilterData } = useContractorList()
 
     const openDialog = () => {
         setIsOpen(true)
@@ -43,12 +46,12 @@ const CustomerListTableFilter = () => {
     }
 
     const { handleSubmit, reset, control } = useForm<FormSchema>({
-        defaultValues: filterData,
+ 
         resolver: zodResolver(validationSchema),
     })
 
     const onSubmit = (values: FormSchema) => {
-        setFilterData(values)
+        //setFilterData()
         setIsOpen(false)
     }
 
@@ -64,23 +67,9 @@ const CustomerListTableFilter = () => {
             >
                 <h4 className="mb-4">Filter</h4>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <FormItem label="Products">
+                    <FormItem label="Especialidades">
                         <Controller
-                            name="purchasedProducts"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    type="text"
-                                    autoComplete="off"
-                                    placeholder="Search by purchased product"
-                                    {...field}
-                                />
-                            )}
-                        />
-                    </FormItem>
-                    <FormItem label="Purchase Channel">
-                        <Controller
-                            name="purchaseChannel"
+                            name="specialities"
                             control={control}
                             render={({ field }) => (
                                 <Checkbox.Group
@@ -88,7 +77,31 @@ const CustomerListTableFilter = () => {
                                     className="flex mt-4"
                                     {...field}
                                 >
-                                    {channelList.map((source, index) => (
+                                    {specialities.map((source, index) => (
+                                        <Checkbox
+                                            key={source + index}
+                                            name={field.name}
+                                            value={source}
+                                            className="justify-between flex-row-reverse heading-text"
+                                        >
+                                            {source}
+                                        </Checkbox>
+                                    ))}
+                                </Checkbox.Group>
+                            )}
+                        />
+                    </FormItem>
+                    <FormItem label="Status">
+                        <Controller
+                            name="status"
+                            control={control}
+                            render={({ field }) => (
+                                <Checkbox.Group
+                                    vertical
+                                    className="flex mt-4"
+                                    {...field}
+                                >
+                                    {status.map((source, index) => (
                                         <Checkbox
                                             key={source + index}
                                             name={field.name}
@@ -116,4 +129,4 @@ const CustomerListTableFilter = () => {
     )
 }
 
-export default CustomerListTableFilter
+export default ContractorListTableFilter
