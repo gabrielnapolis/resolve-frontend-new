@@ -286,24 +286,26 @@ export const pricingPlansData = {
     plans: [
         {
             id: 'basic',
-            name: 'Básico',
+            name: 'Semanal',
             description:
                 'Ideal for individuals or small teams. Includes essential task and project management features.',
             price: {
                 monthly: 20,
                 annually: 500,
             },
+            paymentCycle: 'semanal',
             features: [
-                'taskManagement',
-                'managementTools',
-                'reporting',
-                'support',
+                'visibilidade',
+                'marketing',
+                'maiorVisibilidade',
+                'clientes',
             ],
             recommended: false,
         },
         {
             id: 'standard',
-            name: 'Intermediário',
+            name: 'Mensal',
+            paymentCycle: 'mensal',
             description:
                 'Perfect for growing teams. Offers advanced features for better productivity and collaboration.',
             price: {
@@ -311,33 +313,30 @@ export const pricingPlansData = {
                 annually: 700,
             },
             features: [
-                'taskManagement',
-                'managementTools',
-                'reporting',
-                'support',
-                'fileSharing',
+                'visibilidade',
+                'marketing',
+                'maiorVisibilidade',
+                'clientes',
             ],
-            recommended: false,
+            recommended: true,
         },
         {
             id: 'pro',
-            name: 'Pro',
+            name: 'Anual',
             description:
                 'Best for large teams. Includes premium features and dedicated support for optimal workflow.',
             price: {
                 monthly: 100,
                 annually: 1000,
             },
+            paymentCycle: 'anual',
             features: [
-                'taskManagement',
-                'managementTools',
-                'reporting',
-                'support',
-                'fileSharing',
-                'advancedSecurity',
-                'customIntegrations',
+                'visibilidade',
+                'marketing',
+                'maiorVisibilidade',
+                'clientes',
             ],
-            recommended: true,
+            recommended: false,
         },
     ],
 }

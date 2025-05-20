@@ -2,13 +2,10 @@ import { useMemo, useEffect } from 'react'
 import Button from '@/components/ui/Button'
 import Upload from '@/components/ui/Upload'
 import Input from '@/components/ui/Input'
-import Select, { Option as DefaultOption } from '@/components/ui/Select'
 import Avatar from '@/components/ui/Avatar'
 import { Form, FormItem } from '@/components/ui/Form'
 import NumericInput from '@/components/shared/NumericInput'
-import { countryList } from '@/constants/countries.constant'
 import { components } from 'react-select'
-import type { ControlProps, OptionProps } from 'react-select'
 import { apiGetSettingsProfile } from '@/services/AccontsService'
 import sleep from '@/utils/sleep'
 import useSWR from 'swr'
@@ -30,17 +27,9 @@ type ProfileSchema = {
     img: string
     country: string
     address: string
-    postcode: string
+    state: string
     city: string
 }
-
-type CountryOption = {
-    label: string
-    dialCode: string
-    value: string
-}
-
-const { Control } = components
 
 const validationSchema: ZodType<ProfileSchema> = z.object({
     firstName: z.string().min(1, { message: 'First name required' }),
@@ -55,27 +44,10 @@ const validationSchema: ZodType<ProfileSchema> = z.object({
         .min(1, { message: 'Please input your mobile number' }),
     country: z.string().min(1, { message: 'Please select a country' }),
     address: z.string().min(1, { message: 'Addrress required' }),
-    postcode: z.string().min(1, { message: 'Postcode required' }),
+    state: z.string().min(1, { message: 'Postcode required' }),
     city: z.string().min(1, { message: 'City required' }),
     img: z.string(),
 })
-
-const CustomSelectOption = (
-    props: OptionProps<CountryOption> & { variant: 'country' | 'phone' },
-) => {
-    return (
-        <DefaultOption<CountryOption>
-            {...props}
-            customLabel={(data, label) => (
-                <span className="flex items-center gap-2">
-                    <Avatar shape="circle" size={20} src={''} />
-                    {props.variant === 'country' && <span>{label}</span>}
-                    {props.variant === 'phone' && <span>{data.dialCode}</span>}
-                </span>
-            )}
-        />
-    )
-}
 
 const SettingsProfile = () => {
     const { data, mutate } = useSWR(
@@ -87,17 +59,6 @@ const SettingsProfile = () => {
             revalidateOnReconnect: false,
         },
     )
-
-    const dialCodeList = useMemo(() => {
-        const newCountryList: Array<CountryOption> = JSON.parse(
-            JSON.stringify(countryList),
-        )
-
-        return newCountryList.map((country) => {
-            country.label = country.dialCode
-            return country
-        })
-    }, [])
 
     const beforeUpload = (files: FileList | null) => {
         let valid: string | boolean = true
@@ -194,9 +155,9 @@ const SettingsProfile = () => {
                                     )}
                                 />
                             </div>
-                            <div className="grid md:grid-cols-2 gap-4">
+                            <div className="grid md:grid-cols-1 gap-4">
                                 <FormItem
-                                    label="First name"
+                                    label="Nome Completo"
                                     invalid={Boolean(errors.firstName)}
                                     errorMessage={errors.firstName?.message}
                                 >
@@ -207,25 +168,7 @@ const SettingsProfile = () => {
                                             <Input
                                                 type="text"
                                                 autoComplete="off"
-                                                placeholder="First Name"
-                                                {...field}
-                                            />
-                                        )}
-                                    />
-                                </FormItem>
-                                <FormItem
-                                    label="User name"
-                                    invalid={Boolean(errors.lastName)}
-                                    errorMessage={errors.lastName?.message}
-                                >
-                                    <Controller
-                                        name="lastName"
-                                        control={control}
-                                        render={({ field }) => (
-                                            <Input
-                                                type="text"
-                                                autoComplete="off"
-                                                placeholder="Last Name"
+                                                placeholder="Nome Completo"
                                                 {...field}
                                             />
                                         )}
@@ -252,16 +195,7 @@ const SettingsProfile = () => {
                             </FormItem>
                             <div className="flex items-end gap-4 w-full mb-6">
                                 <FormItem
-                                    invalid={
-                                        Boolean(errors.phoneNumber) ||
-                                        Boolean(errors.dialCode)
-                                    }
-                                >
-                                    <label className="form-label mb-2">
-                                        Phone number
-                                    </label>
-                                </FormItem>
-                                <FormItem
+                                    label='Telefone'
                                     className="w-full"
                                     invalid={
                                         Boolean(errors.phoneNumber) ||
@@ -275,7 +209,7 @@ const SettingsProfile = () => {
                                         render={({ field }) => (
                                             <NumericInput
                                                 autoComplete="off"
-                                                placeholder="Phone Number"
+                                                placeholder="Telefone"
                                                 value={field.value}
                                                 onChange={field.onChange}
                                                 onBlur={field.onBlur}
@@ -284,9 +218,9 @@ const SettingsProfile = () => {
                                     />
                                 </FormItem>
                             </div>
-                            <h4 className="mb-6">Address information</h4>
+                            <h4 className="mb-6">Endereço</h4>
                             <FormItem
-                                label="Address"
+                                label="Endereço"
                                 invalid={Boolean(errors.address)}
                                 errorMessage={errors.address?.message}
                             >
@@ -297,7 +231,7 @@ const SettingsProfile = () => {
                                         <Input
                                             type="text"
                                             autoComplete="off"
-                                            placeholder="Address"
+                                            placeholder="Rua, avenida, logradouro"
                                             {...field}
                                         />
                                     )}
@@ -305,7 +239,7 @@ const SettingsProfile = () => {
                             </FormItem>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <FormItem
-                                    label="City"
+                                    label="Cidade"
                                     invalid={Boolean(errors.city)}
                                     errorMessage={errors.city?.message}
                                 >
@@ -316,25 +250,25 @@ const SettingsProfile = () => {
                                             <Input
                                                 type="text"
                                                 autoComplete="off"
-                                                placeholder="City"
+                                                placeholder="Cidade"
                                                 {...field}
                                             />
                                         )}
                                     />
                                 </FormItem>
                                 <FormItem
-                                    label="Postal Code"
-                                    invalid={Boolean(errors.postcode)}
-                                    errorMessage={errors.postcode?.message}
+                                    label="Estado"
+                                    invalid={Boolean(errors.state)}
+                                    errorMessage={errors.state?.message}
                                 >
                                     <Controller
-                                        name="postcode"
+                                        name="state"
                                         control={control}
                                         render={({ field }) => (
                                             <Input
                                                 type="text"
                                                 autoComplete="off"
-                                                placeholder="Postal Code"
+                                                placeholder="Estado"
                                                 {...field}
                                             />
                                         )}
@@ -347,7 +281,7 @@ const SettingsProfile = () => {
                                     type="submit"
                                     loading={isSubmitting}
                                 >
-                                    Save
+                                    Atualizar Informações
                                 </Button>
                             </div>
                         </Form>

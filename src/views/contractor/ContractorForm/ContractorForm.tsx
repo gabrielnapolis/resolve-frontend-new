@@ -13,6 +13,7 @@ import type { ZodType } from 'zod'
 import type { CommonProps } from '@/@types/common'
 import type { ContractorFormSchema } from './types'
 import LoginSection from './LoginSection'
+import SpecialitySection from './SpecialitySection'
 
 type ContractorFormProps = {
     onFormSubmit: (values: ContractorFormSchema) => void
@@ -68,9 +69,9 @@ const validationSchema: ZodType<ContractorFormSchema> = z
         city: z.string(),
         neighborhood: z.string(),
         address: z.string(),
-        // specialities: z.array(z.number()).refine((value) => value.length > 0, {
-        //     message: 'É necessário selecionar pelo menos 01 serviço',
-        // }),
+        specialities: z.array(z.number()).refine((value) => value.length > 0, {
+            message: 'É necessário selecionar pelo menos 01 serviço',
+        }),
     })
     .refine((value) => value.password === value.passwordConfirm, {
         message: 'As senhas não coincidem',
@@ -128,6 +129,7 @@ const ContractorForm = (props: ContractorFormProps) => {
                     <div className="gap-4 flex flex-col flex-auto">
                         <OverviewSection control={control} errors={errors} />
                         <AddressSection control={control} errors={errors} />
+                        <SpecialitySection control={control} errors={errors} />
                         <LoginSection control={control} errors={errors} />
                     </div>
                 </div>

@@ -17,7 +17,7 @@ export type ContractorFields = {
     address: string
     cep?: string
     neighborhood: string
-    //specialities: number []
+    specialities: number []
 }
 
 export type ContractorFormSchema = ContractorFields

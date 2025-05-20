@@ -49,7 +49,7 @@ const Plans = () => {
                                 </Tag>
                             )}
                         </h5>
-                        <div className="">{plan.description}</div>
+                        {/* <div className="">{plan.description}</div> */}
                         <div className="mt-6">
                             <NumericFormat
                                 className="h1"
@@ -61,7 +61,7 @@ const Plans = () => {
                             <span className="text-lg font-bold">
                                 {' '}
                                 /{' '}
-                                {paymentCycle === 'monthly' ? 'mensal' : 'anual'}
+                               {plan.paymentCycle}
                             </span>
                         </div>
                         <div className="flex flex-col gap-4 border-t border-gray-200 dark:border-gray-700 mt-6 pt-6">

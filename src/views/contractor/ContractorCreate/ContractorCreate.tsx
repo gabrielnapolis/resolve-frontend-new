@@ -36,10 +36,10 @@ const ContractorEdit = () => {
     const handleConfirmDiscard = () => {
         setDiscardConfirmationOpen(true)
         toast.push(
-            <Notification type="success">Customer discardd!</Notification>,
+            <Notification type="success">Cadastro Encerrado!</Notification>,
             { placement: 'top-center' },
         )
-        navigate('/concepts/customers/customer-list')
+        navigate('/')
     }
 
     const handleDiscard = () => {
@@ -62,7 +62,7 @@ const ContractorEdit = () => {
                     fone: "",
                     password: "",
                     passwordConfirm: "",
-                    //specialities: [],
+                    specialities: [],
                     address: "",
                     cep: "",
                     state: "",

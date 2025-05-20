@@ -3,59 +3,35 @@ export const featuresList: {
     description: Record<string, string>
 }[] = [
     {
-        id: 'taskManagement',
+        id: 'visibilidade',
         description: {
-            basic: 'Task management',
-            standard: 'Task management',
-            pro: 'Task management',
+            basic: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
+            standard: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
+            pro: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
         },
     },
     {
-        id: 'managementTools',
+        id: 'marketing',
         description: {
-            basic: 'Basic management tools',
-            standard: 'Advance management tools',
-            pro: 'Advance management tools',
+            basic: 'Marketing completo do perfil dentro da plataforma',
+            standard: 'Marketing completo do perfil dentro da plataforma',
+            pro: 'Marketing completo do perfil dentro da plataforma',
         },
     },
     {
-        id: 'reporting',
+        id: 'maiorVisibilidade',
         description: {
-            basic: 'Report generator',
-            standard: 'Report generator',
-            pro: 'Detailed report generator',
+            basic: 'Maior visibilidade do telefone adicionado ao perfil',
+            standard: 'Maior visibilidade do telefone adicionado ao perfil',
+            pro: 'Maior visibilidade do telefone adicionado ao perfil',
         },
     },
     {
-        id: 'support',
+        id: 'clientes',
         description: {
-            basic: 'Email support',
-            standard: 'Chat & email support',
-            pro: '24/7 chat & email support',
-        },
-    },
-    {
-        id: 'fileSharing',
-        description: {
-            basic: 'Files sharing',
-            standard: 'Files sharing',
-            pro: 'Files sharing',
-        },
-    },
-    {
-        id: 'advancedSecurity',
-        description: {
-            basic: 'Advanced security protocols',
-            standard: 'Advanced security protocols',
-            pro: 'Advanced security protocols',
-        },
-    },
-    {
-        id: 'customIntegrations',
-        description: {
-            basic: 'Third party service integration',
-            standard: 'Third party service integration',
-            pro: 'Third party service integration',
+            basic: 'Clientes em regiões mais próximas para facilitar o atendimento',
+            standard: 'Clientes em regiões mais próximas para facilitar o atendimento',
+            pro: 'Clientes em regiões mais próximas para facilitar o atendimento',
         },
     },
 ]
@@ -70,93 +46,86 @@ export const questionList: Record<
 > = {
     subscription: [
         {
-            title: 'How do I sign up for a subscription?',
+            title: 'Como faço para assinar um plano?',
             content:
-                'Select the plan above with your preferred subscription plan, and follow the on-screen instructions to create an account and enter your payment details.',
+                'Selecione o plano acima com sua assinatura preferida e siga as instruções na tela para criar uma conta e inserir seus dados de pagamento.',
             defaultExpand: true,
         },
         {
-            title: 'Can I cancel my subscription?',
+            title: 'Posso cancelar minha assinatura?',
             content:
-                'Yes, you have the flexibility to cancel your subscription at any time. To cancel, simply log in to your account, navigate to the "Subscription" section, and follow the instructions to cancel your plan. Your cancellation will take effect at the end of your current billing cycle.',
-            defaultExpand: false,
-        },
-
-        {
-            title: 'Can I switch my subscription plan?',
-            content:
-                'Absolutely, you can switch between the monthly and annual plans at any time. To change your subscription plan, log in to your account, go to the "Subscription" section, select the plan you want to switch to, and follow the instructions. Your new plan will take effect immediately.',
+                'Sim, você tem flexibilidade para cancelar sua assinatura a qualquer momento. Para cancelar, basta fazer login em sua conta, navegar até a seção "Assinatura" e seguir as instruções para cancelar seu plano. O cancelamento terá efeito no final do seu ciclo de faturamento atual.',
             defaultExpand: false,
         },
         {
-            title: 'Do you offer a free trial?',
+            title: 'Posso mudar meu plano de assinatura?',
             content:
-                'Yes, we provide a 14-day free trial for new users. During this period, you can access all the features of our subscription plan. If you continue after the trial, you will be charged based on the plan you selected.',
+                'Com certeza, você pode alternar entre os planos mensais e anuais quando quiser. Para alterar seu plano, faça login em sua conta, vá até a seção "Assinatura", selecione o plano desejado e siga as instruções. Seu novo plano entrará em vigor imediatamente.',
             defaultExpand: false,
         },
         {
-            title: 'How do I know when my subscription is about to renew?',
+            title: 'Vocês oferecem um período de teste gratuito?',
             content:
-                'You will receive an email notification a few days before your subscription is set to renew, reminding you of the upcoming charge and providing an option to make any necessary changes.',
+                'Sim, oferecemos um teste gratuito de 14 dias para novos usuários. Durante esse período, você pode acessar todos os recursos do nosso plano de assinatura. Se você continuar após o teste, será cobrado de acordo com o plano selecionado.',
             defaultExpand: false,
         },
         {
-            title: 'Are there any discounts for students or non-profits?',
+            title: 'Como sei quando minha assinatura está prestes a ser renovada?',
             content:
-                'Yes, we offer special discounts for students and non-profits. Please contact our support team with the relevant documentation to apply for these discounts.',
+                'Você receberá um e-mail de notificação alguns dias antes da renovação da sua assinatura, lembrando-o sobre a cobrança futura e oferecendo a opção de fazer alterações, se necessário.',
             defaultExpand: false,
-        },
+        }
     ],
     billing: [
         {
-            title: 'What payment methods do you accept?',
+            title: 'Quais métodos de pagamento são aceitos?',
             content:
-                'We strive to make the payment process as convenient as possible by accepting a variety of payment methods. These include major credit and debit cards such as Visa, MasterCard, and American Express, as well as PayPal. Depending on your location, additional regional payment methods may also be available.',
+                'Buscamos tornar o processo de pagamento o mais conveniente possível, aceitando diversos métodos. Isso inclui cartões de crédito e débito das bandeiras Visa, MasterCard e American Express, além do PayPal. Dependendo da sua região, outros métodos de pagamento locais também podem estar disponíveis.',
             defaultExpand: true,
         },
         {
-            title: 'What happens if my payment fails?',
+            title: 'O que acontece se meu pagamento falhar?',
             content:
-                'If your payment fails, we will notify you via email. You will then have a grace period of 7 days to update your payment information. If the payment issue is not resolved within this period, your subscription will be temporarily suspended until the payment is successfully processed.',
+                'Se o pagamento falhar, enviaremos uma notificação por e-mail. Você terá um período de carência de 7 dias para atualizar suas informações de pagamento. Se o problema não for resolvido nesse prazo, sua assinatura será suspensa temporariamente até que o pagamento seja processado com sucesso.',
             defaultExpand: false,
         },
         {
-            title: 'How do I update my payment information?',
+            title: 'Como atualizo minhas informações de pagamento?',
             content:
-                'To update your payment information, log in to your account, go to the "Billing" section, and enter your new payment details. Make sure to save the changes to ensure continuous service.',
+                'Para atualizar suas informações de pagamento, faça login em sua conta, vá até a seção "Cobrança" e insira os novos dados. Certifique-se de salvar as alterações para garantir a continuidade do serviço.',
             defaultExpand: false,
         },
         {
-            title: 'Will I get a refund if I cancel my subscription?',
+            title: 'Receberei um reembolso se cancelar minha assinatura?',
             content:
-                'Refund policies vary depending on your subscription type. For our Monthly Plan, we do not offer refunds. However, for the Annual Plan, you may be eligible for a prorated refund if you cancel within the first 30 days of your subscription. Please contact our support team for assistance with this process.',
+                'Nossa política de reembolso varia conforme o tipo de assinatura. Para o Plano Mensal, não oferecemos reembolsos. Já para o Plano Anual, você pode ter direito a um reembolso proporcional se cancelar nos primeiros 30 dias da assinatura. Entre em contato com nosso suporte para auxílio nesse processo.',
             defaultExpand: false,
         },
     ],
     others: [
         {
-            title: 'How do I contact customer support?',
+            title: 'Como entro em contato com o suporte ao cliente?',
             content:
-                'Our customer support team is here to help with any questions or issues you may have. You can reach us by emailing support@ecme.com, calling our support line at 1-800-123-4567, or using the live chat feature on our website. We are committed to providing you with prompt and effective assistance.',
+                'Nossa equipe de suporte está pronta para ajudar com quaisquer dúvidas ou problemas. Você pode nos contatar pelo e-mail support@ecme.com, pelo telefone 0800-123-4567 ou pelo chat ao vivo em nosso site. Estamos comprometidos em oferecer um atendimento rápido e eficaz.',
             defaultExpand: true,
         },
         {
-            title: 'How do I change my account details?',
+            title: 'Como altero os dados da minha conta?',
             content:
-                'To update your account details, log in to your account, navigate to the "Security" section, and make the necessary changes. Be sure to save your updates.',
+                'Para atualizar os dados da sua conta, faça login, acesse a seção "Segurança" e faça as alterações necessárias. Lembre-se de salvar as atualizações.',
             defaultExpand: false,
         },
         {
-            title: 'Is my personal information secure?',
+            title: 'Minhas informações pessoais estão seguras?',
             content:
-                'Yes, we prioritize the security of your personal information. Our site uses industry-standard encryption and security measures. Please refer to our Privacy Policy for more details on how we protect your data.',
+                'Sim, priorizamos a segurança dos seus dados pessoais. Nosso site utiliza criptografia e medidas de segurança padrão do mercado. Consulte nossa Política de Privacidade para mais detalhes sobre como protegemos suas informações.',
             defaultExpand: false,
         },
     ],
 }
 
 export const questionCategory: Record<string, string> = {
-    subscription: 'Subscription details',
-    billing: 'Billing and payments',
-    others: 'Other',
+    subscription: 'Informações sobre a assinatura',
+    billing: 'Cobrança e pagamentos',
+    others: 'Outros',
 }
