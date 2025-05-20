@@ -19,6 +19,7 @@ const OauthSignIn = ({ setMessage, disableSubmit }: OauthSignInProps) => {
                 try {
                     window.location.href = "http://localhost:3001/auth/google"; // Backend endpoint
                     const resp = await apiGoogleOauthSignIn()
+                    console.log(resp)
                     if (resp) {
                         const { token, user } = resp
                         onSignIn({ accessToken: token }, user)
