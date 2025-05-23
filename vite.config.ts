@@ -2,6 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path';
 import dynamicImport from 'vite-plugin-dynamic-import'
+import { config } from 'dotenv';
+
+// Load environment variables from .env file
+config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,5 +27,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'build'
+  },
+  define: {
+    'process.env': process.env
   }
 })

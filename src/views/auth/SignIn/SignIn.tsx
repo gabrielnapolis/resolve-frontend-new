@@ -5,6 +5,7 @@ import OauthSignIn from './components/OauthSignIn'
 import ActionLink from '@/components/shared/ActionLink'
 import useTimeOutMessage from '@/utils/hooks/useTimeOutMessage'
 import { useThemeStore } from '@/store/themeStore'
+import { useForm } from 'react-hook-form'
 
 type SignInProps = {
     signUpUrl?: string
@@ -18,7 +19,41 @@ export const SignInBase = ({
     disableSubmit,
 }: SignInProps) => {
     const [message, setMessage] = useTimeOutMessage()
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
 
+    const handleFacebookLogin = () => {
+        window.location.href = "http://localhost:3001/auth/facebook"; // Backend endpoint
+    };
+
+    const handleGoogleLogin = () => {
+        window.location.href = "http://localhost:3001/auth/google";
+    };
+
+    const onSubmit = async (data: any) => {
+        const url = process.env.NEXT_PUBLIC_API;
+        let response = await fetch(`${url}/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.status == 200) {
+            let data = await response.json();
+            localStorage.setItem("token", data.access_token);
+            localStorage.setItem("configs", JSON.stringify(data.configs));
+            return 
+            // Navigate//router.push("/contractor/dashboard");
+        }
+
+        return alert("Usuário ou senha inválido.");
+    };
     const mode = useThemeStore((state) => state.mode)
 
     return (
