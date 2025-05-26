@@ -2,10 +2,11 @@ import { useState } from 'react'
 import Button from '@/components/ui/Button'
 import Dialog from '@/components/ui/Dialog'
 import Segment from '@/components/ui/Segment'
+import Radio from '@/components/ui/Radio'
 import classNames from '@/utils/classNames'
 import sleep from '@/utils/sleep'
 import { usePricingStore } from '../store/pricingStore'
-import { TbCheck, TbCreditCard, TbMail } from 'react-icons/tb'
+import { TbCheck, TbCreditCard, TbMail, TbQrcode } from 'react-icons/tb'
 import {
     NumericFormat,
     PatternFormat,
@@ -13,6 +14,8 @@ import {
 } from 'react-number-format'
 import { useNavigate } from 'react-router-dom'
 import { PaymentCycle } from '../types'
+
+type PaymentMethod = 'creditCard' | 'pix'
 
 function limit(val: string, max: string) {
     if (val.length === 1 && val[0] > max[0]) {
@@ -40,6 +43,7 @@ function cardExpiryFormat(val: string) {
 const PaymentDialog = () => {
     const [loading, setLoading] = useState(false)
     const [paymentSuccessful, setPaymentSuccessful] = useState(false)
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('creditCard')
 
     const navigate = useNavigate()
 
@@ -169,6 +173,30 @@ const PaymentDialog = () => {
                             )}
                         </Segment>
                     </div>
+                    
+                    <div className="mt-6">
+                        <span className="block mb-4">Payment method</span>
+                        <Radio.Group
+                            value={paymentMethod}
+                            onChange={(value) => setPaymentMethod(value as PaymentMethod)}
+                        >
+                            <div className="flex flex-col gap-3">
+                                <Radio value="creditCard">
+                                    <div className="flex items-center gap-2">
+                                        <TbCreditCard className="text-xl" />
+                                        <span>Credit Card</span>
+                                    </div>
+                                </Radio>
+                                <Radio value="pix">
+                                    <div className="flex items-center gap-2">
+                                        <TbQrcode className="text-xl" />
+                                        <span>PIX</span>
+                                    </div>
+                                </Radio>
+                            </div>
+                        </Radio.Group>
+                    </div>
+
                     <div className="mt-6 border border-gray-200 dark:border-gray-600 rounded-lg">
                         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-600">
                             <div className="w-full">
@@ -183,31 +211,50 @@ const PaymentDialog = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex items-center justify-between p-4">
-                            <div className="w-full">
-                                <span>Credit card</span>
-                                <div className="flex items-center gap-2 mt-2">
-                                    <div className="flex-1">
-                                        <TbCreditCard className="text-2xl" />
+                        
+                        {paymentMethod === 'creditCard' && (
+                            <div className="flex items-center justify-between p-4">
+                                <div className="w-full">
+                                    <span>Credit card</span>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <div className="flex-1">
+                                            <TbCreditCard className="text-2xl" />
+                                        </div>
+                                        <PatternFormat
+                                            className="focus:outline-none heading-text w-full"
+                                            placeholder="Credit card number"
+                                            format="#### #### #### ####"
+                                        />
+                                        <NumberFormatBase
+                                            className="focus:outline-none heading-text max-w-12 sm:max-w-28"
+                                            placeholder="MM/YY"
+                                            format={cardExpiryFormat}
+                                        />
+                                        <PatternFormat
+                                            className="focus:outline-none heading-text max-w-12 sm:max-w-28"
+                                            placeholder="CVC"
+                                            format="###"
+                                        />
                                     </div>
-                                    <PatternFormat
-                                        className="focus:outline-none heading-text w-full"
-                                        placeholder="Credit card number"
-                                        format="#### #### #### ####"
-                                    />
-                                    <NumberFormatBase
-                                        className="focus:outline-none heading-text max-w-12 sm:max-w-28"
-                                        placeholder="MM/YY"
-                                        format={cardExpiryFormat}
-                                    />
-                                    <PatternFormat
-                                        className="focus:outline-none heading-text max-w-12 sm:max-w-28"
-                                        placeholder="CVC"
-                                        format="###"
-                                    />
                                 </div>
                             </div>
-                        </div>
+                        )}
+                        
+                        {paymentMethod === 'pix' && (
+                            <div className="flex items-center justify-between p-4">
+                                <div className="w-full">
+                                    <span>PIX Key</span>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <TbQrcode className="text-2xl" />
+                                        <input
+                                            className="focus:outline-none heading-text flex-1"
+                                            placeholder="Enter your PIX key (CPF, email, phone, or random key)"
+                                            type="text"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <div className="mt-6 flex flex-col items-end">
                         <h4>

@@ -21,7 +21,7 @@ const ArticleListSearch = () => {
 
     return (
         <DebouceInput
-            placeholder="Search..."
+            placeholder="Buscar artigos..."
             type="text"
             prefix={<TbSearch className="text-lg" />}
             onChange={(e) => handleInputChange(e.target.value)}

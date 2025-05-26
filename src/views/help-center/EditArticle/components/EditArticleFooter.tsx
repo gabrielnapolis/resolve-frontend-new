@@ -48,7 +48,7 @@ const EditArticleFooter = () => {
                         icon={<TbArrowNarrowLeft />}
                         onClick={handleBack}
                     >
-                        Back
+                        Voltar
                     </Button>
                     <div className="flex items-center">
                         <Button
@@ -58,7 +58,7 @@ const EditArticleFooter = () => {
                             loading={isSaving}
                             onClick={handleSave}
                         >
-                            Save
+                            Salvar
                         </Button>
                         <Button
                             variant="solid"
@@ -66,7 +66,7 @@ const EditArticleFooter = () => {
                             loading={isPublishing}
                             onClick={handlePublish}
                         >
-                            Publish
+                            Publicar
                         </Button>
                     </div>
                 </div>
