@@ -15,6 +15,45 @@ const ApiService = {
                 })
         })
     },
+    postDataWithAxios<Response = unknown, Request = Record<string, unknown>>(
+        param: AxiosRequestConfig<Request>,
+    ) {
+        return new Promise<Response>((resolve, reject) => {
+            AxiosBase(param)
+                .then((response: AxiosResponse<Response>) => {
+                    resolve(response.data)
+                })
+                .catch((errors: AxiosError) => {
+                    reject(errors)
+                })
+        })
+    },
+    updateDataWithAxios<Response = unknown, Request = Record<string, unknown>>(
+        param: AxiosRequestConfig<Request>,
+    ) {
+        return new Promise<Response>((resolve, reject) => {
+            AxiosBase(param)
+                .then((response: AxiosResponse<Response>) => {
+                    resolve(response.data)
+                })
+                .catch((errors: AxiosError) => {
+                    reject(errors)
+                })
+        })
+    },
+    deletehDataWithAxios<Response = unknown, Request = Record<string, unknown>>(
+        param: AxiosRequestConfig<Request>,
+    ) {
+        return new Promise<Response>((resolve, reject) => {
+            AxiosBase(param)
+                .then((response: AxiosResponse<Response>) => {
+                    resolve(response.data)
+                })
+                .catch((errors: AxiosError) => {
+                    reject(errors)
+                })
+        })
+    },
 }
 
 export default ApiService

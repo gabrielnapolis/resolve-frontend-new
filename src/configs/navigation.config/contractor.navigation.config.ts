@@ -43,7 +43,7 @@ const contractorNavigationConfig: NavigationTree[] = [
             },
             {
                 key: 'contractor.signature',
-                path: '/contractor/signature',
+                path: '/contractor/settings',
                 title: 'Assinatura',
                 translateKey: '',
                 icon: 'dashboardProject',

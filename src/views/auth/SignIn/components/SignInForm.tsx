@@ -22,7 +22,33 @@ type SignInFormSchema = {
     email: string
     password: string
 }
+const handleFacebookLogin = () => {
+    window.location.href = "http://localhost:3001/auth/facebook"; // Backend endpoint
+};
 
+const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:3001/auth/google";
+};
+
+const onSubmit = async (data: any) => {
+    const url = process.env.NEXT_PUBLIC_API;
+    let response = await fetch(`${url}/auth/login`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.status == 200) {
+        let data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("configs", JSON.stringify(data.configs));
+       // return router.push("/contractor/dashboard");
+    }
+
+    return alert("Usuário ou senha inválido.");
+};
 const validationSchema: ZodType<SignInFormSchema> = z.object({
     email: z
         .string({ required_error: 'Please enter your email' })
@@ -92,10 +118,7 @@ const SignInForm = (props: SignInFormProps) => {
                     label="Senha"
                     invalid={Boolean(errors.password)}
                     errorMessage={errors.password?.message}
-                    className={classNames(
-                        passwordHint && 'mb-0',
-                        errors.password?.message && 'mb-8',
-                    )}
+                
                 >
                     <Controller
                         name="password"
