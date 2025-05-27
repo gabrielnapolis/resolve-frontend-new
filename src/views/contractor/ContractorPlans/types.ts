@@ -18,6 +18,7 @@ export type GetPricingPanResponse = {
         id: string
         name: string
         description: string
+        paymentCycle: string
         price: {
             monthly: number
             annually: number

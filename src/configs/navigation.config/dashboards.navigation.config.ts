@@ -10,7 +10,7 @@ const dashboardsNavigationConfig: NavigationTree[] = [
     {
         key: 'admin',
         path: '/admin/dashboard',
-        title: 'Dashboard Adm',
+        title: 'Dashboard Administrador',
         translateKey: 'nav.createContractor',
         icon: 'dashboardProject',
         type: NAV_ITEM_TYPE_TITLE,

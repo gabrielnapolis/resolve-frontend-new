@@ -70,7 +70,7 @@ const CustomSelectOption = (
                     <Avatar
                         shape="circle"
                         size={20}
-                        src={`/img/countries/${data.value}.png`}
+                        src={''}
                     />
                     {props.variant === 'country' && <span>{label}</span>}
                     {props.variant === 'phone' && <span>{data.dialCode}</span>}
@@ -155,7 +155,7 @@ const SettingsProfile = () => {
                                     size={90}
                                     className="border-4 border-white bg-gray-100 text-gray-300 shadow-lg"
                                     icon={<HiOutlineUser />}
-                                    src={field.value}
+                                    src={''}
                                 />
                                 <div className="flex items-center gap-2">
                                     <Upload

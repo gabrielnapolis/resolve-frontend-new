@@ -5,15 +5,15 @@ const contractorNavigationConfig: NavigationTree[] = [
     {
         key: 'dashboardContractor',
         path: '/contractor/dashboard',
-        title: 'Dashboard Prestador',
+        title: 'Área do Prestador',
         translateKey: 'nav.createContractor',
         icon: 'singleMenu',
         type: NAV_ITEM_TYPE_TITLE,
         authority: [],
         subMenu: [
             {
-                key: 'contractor.settings',
-                path: '/contractor/settings',
+                key: 'contractor.profile',
+                path: '/contractor/profile',
                 title: 'Perfil',
                 translateKey: '',
                 icon: 'uiDataDisplayAvatar',

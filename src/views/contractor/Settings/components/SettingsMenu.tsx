@@ -3,11 +3,12 @@ import ScrollBar from '@/components/ui/ScrollBar'
 import { useSettingsStore } from '../store/settingsStore'
 import useQuery from '@/utils/hooks/useQuery'
 import {
-    TbUserSquare,
-    TbFileDollar,
-    TbHammer,
-    TbBook,
     TbAlignBoxLeftTop,
+    TbMessageCog,
+    TbTool,
+    TbHelp,
+    TbRocket,
+    TbLockFilled,
 } from 'react-icons/tb'
 import type { View } from '../types'
 import type { ReactNode } from 'react'
@@ -15,11 +16,12 @@ import type { ReactNode } from 'react'
 const { MenuItem } = Menu
 
 const menuList: { label: string; value: View; icon: ReactNode }[] = [
-    { label: 'Painel', value: 'profile', icon: <TbAlignBoxLeftTop /> },
-    { label: 'Clientes', value: 'security', icon: <TbUserSquare /> },
-    { label: 'Prestadores', value: 'notification', icon: <TbHammer /> },
-    { label: 'Cadastro de Especialidades', value: 'billing', icon: <TbBook /> },
-    { label: 'Gerenciador de Pagamentos', value: 'integration', icon: <TbFileDollar /> },
+    { label: 'Perfil', value: 'profile', icon: <TbAlignBoxLeftTop /> },
+    { label: 'Especialidades', value: 'security', icon: <TbTool /> },
+    { label: 'Assinatura', value: 'integration', icon: <TbRocket /> },
+    { label: 'Avaliações', value: 'integration', icon: <TbMessageCog /> },
+    { label: 'Alterar Senha', value: 'integration', icon: <TbLockFilled /> },
+    { label: 'Ajuda', value: 'integration', icon: <TbHelp /> },
 ]
 
 export const SettingsMenu = ({ onChange }: { onChange?: () => void }) => {

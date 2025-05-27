@@ -48,12 +48,12 @@ const EditArticleHeader = (props: EditArticleHeaderProps) => {
         <div>
             <input
                 className="ring-0 outline-none block w-full p-2 bg-transparent heading-text h3"
-                placeholder="Untitle article"
+                placeholder="Artigo sem título"
                 value={articleTitle}
                 onChange={(e) => setArticleTitle(e.target.value)}
             />
             <div className="mt-3 flex flex-col gap-6 border-t border-gray-200 dark:border-gray-700 py-6">
-                <Field title="Created by:">
+                <Field title="Criado por:">
                     {authors.length > 0 && (
                         <div className="flex items-center gap-2">
                             <Avatar size={25} src={authors[0].img} />
@@ -63,7 +63,7 @@ const EditArticleHeader = (props: EditArticleHeaderProps) => {
                         </div>
                     )}
                 </Field>
-                <Field title="Last updated:">
+                <Field title="Última atualização:">
                     <span className="heading-text font-bold">{updateTime}</span>
                 </Field>
                 <Field title="Tags:">

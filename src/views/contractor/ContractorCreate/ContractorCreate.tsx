@@ -36,10 +36,10 @@ const ContractorEdit = () => {
     const handleConfirmDiscard = () => {
         setDiscardConfirmationOpen(true)
         toast.push(
-            <Notification type="success">Customer discardd!</Notification>,
+            <Notification type="success">Cadastro Encerrado!</Notification>,
             { placement: 'top-center' },
         )
-        navigate('/concepts/customers/customer-list')
+        navigate('/')
     }
 
     const handleDiscard = () => {
@@ -62,7 +62,7 @@ const ContractorEdit = () => {
                     fone: "",
                     password: "",
                     passwordConfirm: "",
-                    //specialities: [],
+                    specialities: [],
                     address: "",
                     cep: "",
                     state: "",
@@ -85,14 +85,14 @@ const ContractorEdit = () => {
                                 icon={<TbTrash />}
                                 onClick={handleDiscard}
                             >
-                                Discard
+                                Sair
                             </Button>
                             <Button
                                 variant="solid"
                                 type="submit"
                                 loading={isSubmiting}
                             >
-                                Create
+                                Cadastrar
                             </Button>
                         </div>
                     </div>
@@ -101,15 +101,15 @@ const ContractorEdit = () => {
             <ConfirmDialog
                 isOpen={discardConfirmationOpen}
                 type="danger"
-                title="Discard changes"
+                title="Cancelar cadastro?"
                 onClose={handleCancel}
                 onRequestClose={handleCancel}
                 onCancel={handleCancel}
                 onConfirm={handleConfirmDiscard}
             >
                 <p>
-                    Are you sure you want discard this? This action can&apos;t
-                    be undo.{' '}
+                    Tem certeza que deseja cancelar o cadastro? Você perderá todas
+                    as informações não salvas.
                 </p>
             </ConfirmDialog>
         </>

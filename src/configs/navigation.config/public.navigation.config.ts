@@ -26,6 +26,16 @@ const publicNavigationConfig: NavigationTree[] = [
         subMenu: [],
     },
     {
+        key: 'create.contractor.plans',
+        path: '/create-contractor/plans',
+        title: 'Planos de Assinatura',
+        translateKey: 'nav.createContractor',
+        icon: 'dashboardProject',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
         key: 'info.works',
         path: '/como-funciona',
         title: 'Como o Resolve funciona?',

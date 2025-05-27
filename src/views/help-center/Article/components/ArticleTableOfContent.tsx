@@ -21,7 +21,7 @@ const ArticleTableOfContent = ({ content }: ArticleTableOfContentProps) => {
                 <div className="lg:w-[380px] mt-6 md:px-8">
                     <Affix offset={getTopGapValue()}>
                         <Card>
-                            <h6 className="font-bold">In this page</h6>
+                            <h6 className="font-bold">Nesta página</h6>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium mt-4 relative">
                                 {content.map((link) => (
                                     <li key={`anchor${link.id}`}>

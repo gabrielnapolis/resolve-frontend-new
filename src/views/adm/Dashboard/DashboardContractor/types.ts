@@ -9,14 +9,21 @@ export type Filter = {
 }
 
 export type ContractorColumns = {
-    id: string
-    name: string
-    firstName: string
-    lastName: string
-    email: string
-    phoneNumber: string
-    address: string
+    id: number
     img: string
-    role: string
-    status: number
+    picture: string
+    fullname: string
+    email: string
+    fone: string
+    address: string
+    city: string
+    state: string
+    active: boolean
+    specialities: {
+        id: number
+        speciality: {
+            id: number
+            fullname: string
+        }
+    }[]
 }
