@@ -16,6 +16,7 @@ const PaymentPixForm=()=> {
   const [qrCodeData, setQRCodeData] = useState(null as any);
   const [qrCode, setQrCode] = useState();
   const [copiaECola, setCopiaECola] = useState();
+
   function load() {
     generateQrCode()
       .then(e => {
@@ -42,6 +43,38 @@ const validate =()=>{
           <Card>
            
             <div className="flex justify-center mb-5 gap-4">
+               <div>
+                {
+                  qrCode && (
+                    <Image
+                    src={qrCode}
+                    width={300}
+                    height={300}
+                    alt="Picture of the author"
+                    />
+                  )
+                }
+                {
+                  copiaECola && (
+                    <>
+                      <label htmlFor="copiaEcola">Copia e Cola</label>
+                      <br />
+                      <input value={copiaECola} onChange={e => {}} />
+                      <br />
+                    </>
+                  )
+                  
+                }
+                
+                {
+                  !qrCodeData && (
+                    <Button type="button" onClick={load}>Obter QR Code</Button>)
+                }
+                                {
+                  qrCodeData && (
+                      <Button type="button" onClick={validate}>Validar Pagamento</Button>)
+                }
+              </div>
               <Button variant={"solid"} type="button">
                 Voltar
               </Button>

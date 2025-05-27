@@ -1,19 +1,20 @@
-"use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 const AuthSuccessContent = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const [searchParams] = useSearchParams();
+   const navigate = useNavigate()
+
 
   useEffect(() => {
     const token = searchParams?.get("token");
+    console.log(token);
     if (token) {
       localStorage.setItem("token", token);
-      router.push("/");
+      navigate("/home");
     }
-  }, [searchParams, router]);
+  }, [searchParams]);
 
   return <p>Autenticando...</p>;
 };

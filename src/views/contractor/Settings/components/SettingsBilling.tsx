@@ -59,7 +59,7 @@ const SettingsBilling = () => {
 
     return (
         <div className="grid grid-cols-3 gap-4">
-            {status == false ?
+        
                 <>
                     <div className="flex flex-col">
                         <PaymentType onChange={setPaymentType} />
@@ -70,7 +70,7 @@ const SettingsBilling = () => {
                         {paymentType === "pix" && <PaymentPixForm />}
                     </div>
                 </>
-            : <ActiveSubscription /> }
+ 
         </div>
     );
    

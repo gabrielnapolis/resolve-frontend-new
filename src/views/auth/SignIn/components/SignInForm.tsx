@@ -118,10 +118,7 @@ const SignInForm = (props: SignInFormProps) => {
                     label="Senha"
                     invalid={Boolean(errors.password)}
                     errorMessage={errors.password?.message}
-                    className={classNames(
-                        passwordHint && 'mb-0',
-                        errors.password?.message && 'mb-8',
-                    )}
+                
                 >
                     <Controller
                         name="password"

@@ -5,7 +5,7 @@ const authRoute: Routes = [
     {
         key: 'authSuccess',
         path: `/auth/success`,
-        component: lazy(() => import('@/views/auth/SignIn')),
+        component: lazy(() => import('@/views/auth/AuthSuccess')),
         authority: [],
     },
     {
