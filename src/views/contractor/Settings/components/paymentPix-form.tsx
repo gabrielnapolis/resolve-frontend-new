@@ -3,10 +3,7 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+
 } from "@/components/ui/card";
 import Image from "next/image";
 import { 
@@ -15,10 +12,11 @@ import {
  } from "./actions";
 import { Input } from "@/components/ui/input";
 
-export default function PaymentPixForm() {
+const PaymentPixForm=()=> {
   const [qrCodeData, setQRCodeData] = useState(null as any);
   const [qrCode, setQrCode] = useState();
   const [copiaECola, setCopiaECola] = useState();
+
   function load() {
     generateQrCode()
       .then(e => {
@@ -29,7 +27,7 @@ export default function PaymentPixForm() {
       })
       .catch(e => console.log(e))
   }
-  function validate(){
+const validate =()=>{
     if(!qrCodeData?.payment) return;
 
     validatePayment(qrCodeData.id)
@@ -43,14 +41,9 @@ export default function PaymentPixForm() {
     <>
         <form>
           <Card>
-            <CardHeader>
-              <CardTitle>Assinatura via PIX</CardTitle>
-              <CardDescription>
-                Realize o pagamento e aguarde a confirmação
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div>
+           
+            <div className="flex justify-center mb-5 gap-4">
+               <div>
                 {
                   qrCode && (
                     <Image
@@ -82,11 +75,7 @@ export default function PaymentPixForm() {
                       <Button type="button" onClick={validate}>Validar Pagamento</Button>)
                 }
               </div>
-
-
-            </CardContent>
-            <div className="flex justify-center mb-5 gap-4">
-              <Button variant={"outline"} type="button">
+              <Button variant={"solid"} type="button">
                 Voltar
               </Button>
               <Button type="submit" >Atualizar</Button>
@@ -96,3 +85,4 @@ export default function PaymentPixForm() {
     </>
   );
 }
+export default PaymentPixForm
