@@ -63,7 +63,7 @@ const contractorNavigationConfig: NavigationTree[] = [
             },
             {
                 key: 'contractor.help',
-                path: '/contractor/help',
+                path: '/ajuda',
                 title: 'Ajuda',
                 translateKey: '',
                 icon: 'helpCenter',
