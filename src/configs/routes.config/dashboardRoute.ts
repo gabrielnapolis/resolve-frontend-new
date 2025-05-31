@@ -85,6 +85,18 @@ const dashboardRoute: Routes = [
         ),
         authority: [],
     },
+    {
+        key: 'dashboard.contractor',
+        path: '/adm/dashboard/contractor',
+        component: lazy(() => import('@/views/adm/Dashboard/DashboardContractor/DashboardContractor')),
+        authority: [ADMIN],
+    },
+    {
+        key: 'dashboard.contractor.details',
+        path: '/adm/dashboard/contractor/details/:id',
+        component: lazy(() => import('@/views/adm/Dashboard/DashboardContractor/components/ContractorDetails')),
+        authority: [ADMIN],
+    },
 ]
 
 export default dashboardRoute

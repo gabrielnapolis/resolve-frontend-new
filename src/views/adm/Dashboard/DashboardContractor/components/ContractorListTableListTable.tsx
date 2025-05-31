@@ -95,7 +95,7 @@ const ContractorListTable = () => {
     }
 
     const handleViewDetails = (contractor: ContractorColumns) => {
-       
+        navigate(`/adm/dashboard/contractor/details/${contractor.id}`)
     }
 
     const columns: ColumnDef<ContractorColumns>[] = useMemo(

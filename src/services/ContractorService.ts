@@ -32,3 +32,10 @@ export async function apiCreateContractor<T = any>(data: any): Promise<T> {
         data,
     })
 }
+
+export async function apiGetContractorById<T = any>(id: string | number): Promise<T> {
+    return ApiService.fetchDataWithAxios<T>({
+        url: `/contractor/${id}`,
+        method: 'get',
+    })
+}
