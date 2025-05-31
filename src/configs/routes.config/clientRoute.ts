@@ -13,13 +13,10 @@ const clientRoute: Routes = [
         },
     },
     {
-        key: 'client.create',
-        path: 'client/create',
+        key: 'create.client',
+        path: '/create-client',
         component: lazy(() => import('@/views/client/ClientCreate')),
-        authority: [ADMIN],
-        meta: {
-            pageContainerType: 'contained',
-        },
+        authority: [],
     },
 ]
 

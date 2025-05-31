@@ -42,18 +42,10 @@ const ClientCreate = () => {
 
         try {
             await apiCreateClient(formData)
-            toast.push({
-                type: 'success',
-                title: 'Cliente criado com sucesso!',
-                duration: 2500
-            })
+            toast.push('Cliente criado com sucesso!')
             navigate('/adm/dashboard')
         } catch (error) {
-            toast.push({
-                type: 'danger',
-                title: 'Erro ao criar cliente',
-                duration: 2500
-            })
+            toast.push('Erro ao criar cliente')
         } finally {
             setIsLoading(false)
         }

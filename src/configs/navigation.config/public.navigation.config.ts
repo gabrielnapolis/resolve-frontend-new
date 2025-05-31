@@ -16,6 +16,16 @@ const publicNavigationConfig: NavigationTree[] = [
         subMenu: [],
     },
     {
+        key: 'create.client',
+        path: '/create-client',
+        title: 'Cadastro de cliente',
+        translateKey: 'nav.createClient',
+        icon: 'signUp',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
         key: 'create.contractor',
         path: '/create-contractor',
         title: 'Seja um Prestador',
