@@ -2,14 +2,11 @@ import { useRef } from 'react'
 import Button from '@/components/ui/Button'
 import Container from '@/components/shared/Container'
 import { useHelpCenterStore } from '../store/helpCenterStore'
-import { TbSearch, TbAdjustments } from 'react-icons/tb'
+import { TbSearch } from 'react-icons/tb'
 import SearchFilter from './SearchFilter'
-import { useThemeStore } from '@/store/themeStore'
 
 const TopSection = () => {
-    const schema = useThemeStore((state) => state.themeSchema)
-    const setSchema = useThemeStore((state) => state.setSchema)
-    const mode = useThemeStore((state) => state.mode)
+
     const inputRef = useRef<HTMLInputElement>(null)
 
     const setQueryText = useHelpCenterStore((state) => state.setQueryText)
