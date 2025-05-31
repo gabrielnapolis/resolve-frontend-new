@@ -11,7 +11,7 @@ import ConfirmDialog from '@/components/shared/ConfirmDialog'
 import { TbTrash } from 'react-icons/tb'
 import { apiCreateClient } from '@/services/ClientService'
 import { z } from 'zod'
-import InputMask from 'react-input-mask';
+import { InputMask } from '@react-input/mask'
 
 type ClientFormData = {
     fullname: string
@@ -21,6 +21,7 @@ type ClientFormData = {
     passwordConfirm: string
     birthday: string
     cpf: string
+    fone: string
 }
 
 const validationSchema = z
@@ -33,7 +34,7 @@ const validationSchema = z
             .string()
             .min(6, 'Confirmação de senha deve ter pelo menos 6 caracteres'),
         birthday: z.string().min(8, 'Data deve ter 8 dígitos'),
-        cpf: z.string().min(14, 'CPF deve ter 14 dígitos'), // Updated cpf validation
+        cpf: z.string().min(14, 'CPF deve ter 14 dígitos'),
     })
     .refine((data) => data.email === data.emailConfirm, {
         message: 'Emails não coincidem',
@@ -57,24 +58,12 @@ const ClientCreate = () => {
         passwordConfirm: '',
         birthday: '',
         cpf: '',
+        fone: '',
     })
     const [errors, setErrors] = useState<Record<string, string>>({})
 
     const handleInputChange = (field: keyof ClientFormData, value: string) => {
         let processedValue = value
-
-        // Apply masks
-        if (field === 'birthday') {
-            processedValue = value.replace(/\D/g, '').slice(0, 8)
-            if (processedValue.length >= 2) {
-                processedValue =
-                    processedValue.slice(0, 2) + '/' + processedValue.slice(2)
-            }
-            if (processedValue.length >= 5) {
-                processedValue =
-                    processedValue.slice(0, 5) + '/' + processedValue.slice(5)
-            }
-        }
 
         if (field === 'cpf') {
             processedValue = value
@@ -85,7 +74,6 @@ const ClientCreate = () => {
             [field]: processedValue,
         }))
 
-        // Clear error when user starts typing
         if (errors[field]) {
             setErrors((prev) => ({ ...prev, [field]: '' }))
         }
@@ -125,7 +113,8 @@ const ClientCreate = () => {
                 email: formData.email,
                 password: formData.password,
                 birthday: formData.birthday.replace(/\D/g, ''),
-                cpf: formData.cpf,
+                cpf: formData.cpf.replace(/[^\d]+/g, ''),
+                fone: formData.fone.replace(/\D/g, ''),
             }
 
             await apiCreateClient(apiData)
@@ -183,7 +172,6 @@ const ClientCreate = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <FormItem
                                     label="Nome Completo"
-                                    className="md:col-span-2"
                                     invalid={!!errors.fullname}
                                     errorMessage={errors.fullname}
                                 >
@@ -197,6 +185,26 @@ const ClientCreate = () => {
                                         }
                                         placeholder="Informe seu nome"
                                         invalid={!!errors.fullname}
+                                    />
+                                </FormItem>
+
+                                <FormItem
+                                    label="Telefone"
+                                    invalid={Boolean(errors.fone)}
+                                    errorMessage={errors.fone}
+                                >
+                                    <InputMask
+                                        component={Input}
+                                        mask="(__) _____-____"
+                                        replacement={{ _: /\d/ }}
+                                        value={formData.fone}
+                                        onChange={(e) =>
+                                            handleInputChange(
+                                                'fone',
+                                                e.target.value,
+                                            )
+                                        }
+                                        placeholder="Digite seu telefone"
                                     />
                                 </FormItem>
 
@@ -226,17 +234,17 @@ const ClientCreate = () => {
                                     invalid={!!errors.birthday}
                                     errorMessage={errors.birthday}
                                 >
-                                    <Input
-                                        value={formData.birthday}
+                                    <InputMask
+                                        component={Input}
+                                        mask="__/__/____"
+                                        replacement={{ _: /\d/ }}
                                         onChange={(e) =>
                                             handleInputChange(
                                                 'birthday',
                                                 e.target.value,
                                             )
                                         }
-                                        placeholder="DD/MM/AAAA"
-                                        maxLength={10}
-                                        invalid={!!errors.birthday}
+                                        placeholder="Informe sua data de nascimento"
                                     />
                                 </FormItem>
 
@@ -335,7 +343,7 @@ const ClientCreate = () => {
                                         variant="solid"
                                         loading={isSubmiting}
                                     >
-                                        Criar Cliente
+                                        Cadastrar
                                     </Button>
                                 </div>
                             </div>
