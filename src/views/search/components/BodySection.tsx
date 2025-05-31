@@ -15,9 +15,11 @@ const BodySection = () => {
             try {
                 setLoading(true)
                 const response = await apiGetContractorsList()
-                // A resposta da API real vem com uma estrutura { list: [], total: number }
-                const contractorData = response.list || []
+                console.log('Contractors fetched:', response)
+
+                const contractorData = response || []
                 setContractors(contractorData)
+                console.log('Contractors set:', contractorData)
             } catch (error) {
                 console.error('Erro ao carregar contractors:', error)
             } finally {
@@ -27,13 +29,11 @@ const BodySection = () => {
 
         fetchContractors()
 
-        // Listener para filtro por especialidade
         const handleContractorsFiltered = (event: CustomEvent) => {
             const { contractors: filteredContractors } = event.detail
             setContractors(filteredContractors)
         }
 
-        // Listener para busca por texto
         const handleSearchFiltered = (event: CustomEvent) => {
             const { contractors: filteredContractors } = event.detail
             setContractors(filteredContractors)

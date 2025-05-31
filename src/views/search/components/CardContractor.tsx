@@ -96,7 +96,7 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
                     <Button size="sm" variant="solid" className="flex-1">
                         Ver Perfil
                     </Button>
-                    <Button size="sm" variant="twoTone" className="flex-1">
+                    <Button size="sm" className="flex-1">
                         Contatar
                     </Button>
                 </div>

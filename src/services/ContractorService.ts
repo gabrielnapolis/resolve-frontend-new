@@ -1,7 +1,7 @@
-import { GetContractorColumnsListResponse } from '@/views/adm/Dashboard/DashboardContractor/types'
 import ApiService from './ApiService'
 import type { TableQueries } from '@/@types/common'
 import { SpecialityFields } from '@/views/adm/Dashboard/DashboardSpeciality/types'
+import { ContractorOverview } from '@/views/search/types'
 
 interface ContractorParams extends TableQueries {
     filters?: {
@@ -11,7 +11,7 @@ interface ContractorParams extends TableQueries {
     }
 }
 
-export async function apiGetContractorsList<T = GetContractorColumnsListResponse>(): Promise<T> {
+export async function apiGetContractorsList<T = ContractorOverview[]>(): Promise<T> {
     return ApiService.fetchDataWithAxios<T>({
         url: '/contractor',
         method: 'get',
