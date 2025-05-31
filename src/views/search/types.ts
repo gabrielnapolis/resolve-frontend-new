@@ -50,3 +50,25 @@ export type GetSupportHubCategoriesResponse = {
 }
 
 export type GetSupportHubArticlesResponse = Articles
+export interface ContractorOverview {
+  id: number;
+  picture: string;
+  fullname: string;
+  fone: string;
+  email: string;
+  description: string;
+  state: string;
+  city: string;
+  adress: string;
+  cep: string;
+  neighborhood: string;
+  specialities: [
+    {
+      speciality: {
+        id: number;
+        fullname: string;
+        logoPath: string;
+      };
+    }
+  ];
+}
