@@ -7,6 +7,13 @@ export async function apiGetClientList<T, GetClientColumnsListResponse>() {
     })
 }
 
+export async function apiGetClientById<T>(id: number | string) {
+    return ApiService.fetchDataWithAxios<T>({
+        url: `/client/${id}`,
+        method: 'get',
+    })
+}
+
 export async function apiCreateClient<T>(data: {
     fullname: string
     email: string

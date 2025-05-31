@@ -87,7 +87,7 @@ const ClientListTable = () => {
     }
 
     const handleViewDetails = (client: ClientColumns) => {
-        // Implement view details logic
+        navigate(`/client/detail/${client.id}`)
     }
 
     const columns: ColumnDef<ClientColumns>[] = useMemo(
