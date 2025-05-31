@@ -14,31 +14,31 @@ import type { GetPricingPanResponse } from '../types'
 const mockPricingData: GetPricingPanResponse = {
     plans: [
         {
-            id: 'basic',
-            name: 'Básico',
+            id: 'weekly',
+            name: 'Semanal',
             description: 'Plano ideal para iniciantes',
             price: { monthly: 29.90, annually: 299.00 },
             paymentCycle: 'mês',
             recommended: false,
-            features: ['feature1', 'feature2']
+            features: ['visibilidade', 'marketing', 'maiorVisibilidade', 'clientes']
         },
         {
-            id: 'premium',
-            name: 'Premium',
+            id: 'monthly',
+            name: 'Mensal',
             description: 'Plano recomendado para profissionais',
             price: { monthly: 59.90, annually: 599.00 },
             paymentCycle: 'mês',
             recommended: true,
-            features: ['feature1', 'feature2', 'feature3']
+            features: ['visibilidade', 'marketing', 'maiorVisibilidade', 'clientes']
         },
         {
-            id: 'enterprise',
-            name: 'Enterprise',
+            id: 'annual',
+            name: 'Anual',
             description: 'Plano para grandes empresas',
             price: { monthly: 99.90, annually: 999.00 },
             paymentCycle: 'mês',
             recommended: false,
-            features: ['feature1', 'feature2', 'feature3', 'feature4']
+            features: ['visibilidade', 'marketing', 'maiorVisibilidade', 'clientes']
         }
     ],
     featuresModel: []
@@ -74,7 +74,6 @@ const Plans = () => {
                                 </Tag>
                             )}
                         </h5>
-                        {/* <div className="">{plan.description}</div> */}
                         <div className="mt-6">
                             <NumericFormat
                                 className="h1"
