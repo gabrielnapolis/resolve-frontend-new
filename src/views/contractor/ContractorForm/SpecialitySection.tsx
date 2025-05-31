@@ -1,18 +1,48 @@
+
 import { Card, FormItem, Checkbox } from "@/components/ui";
 import { Controller } from "react-hook-form";
 import { FormSectionBaseProps } from "./types";
+import { useEffect, useState } from "react";
+import { apiGetSpecialityList } from "@/services/ContractorService";
 
 type SpecialitySectionProps = FormSectionBaseProps;
 
-const specialities = [
-    { value: 'pedreiro', label: 'Pedreiro' },
-    { value: 'marceneiro', label: 'Marceneiro' },
-    { value: 'encanador', label: 'Encanador' },
-    { value: 'pintor', label: 'Pintor' },
-    { value: 'servicos-gerais', label: 'Serviços Gerais' },
-];
+type Speciality = {
+    id: number;
+    fullname: string;
+};
 
 const SpecialitySection = ({ control, errors }: SpecialitySectionProps) => {
+    const [specialities, setSpecialities] = useState<Speciality[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadSpecialities = async () => {
+            try {
+                setLoading(true);
+                const data = await apiGetSpecialityList<Speciality[]>();
+                setSpecialities(data);
+            } catch (error) {
+                console.error('Erro ao carregar especialidades:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadSpecialities();
+    }, []);
+
+    if (loading) {
+        return (
+            <Card>
+                <h4 className="mb-6">Especialidades</h4>
+                <div className="flex items-center justify-center p-4">
+                    <p>Carregando especialidades...</p>
+                </div>
+            </Card>
+        );
+    }
+
     return (
         <Card>
             <h4 className="mb-6">Especialidades</h4>
@@ -29,14 +59,17 @@ const SpecialitySection = ({ control, errors }: SpecialitySectionProps) => {
                             <Checkbox.Group
                                 vertical
                                 value={(field.value || []).map(String)}
-                                onChange={(selected) => field.onChange(selected)}
+                                onChange={(selected) => {
+                                    const numericValues = selected.map(Number);
+                                    field.onChange(numericValues);
+                                }}
                             >
                                 {specialities.map((speciality) => (
                                     <Checkbox
-                                        key={speciality.value}
-                                        value={speciality.value}
+                                        key={speciality.id}
+                                        value={speciality.id.toString()}
                                     >
-                                        {speciality.label}
+                                        {speciality.fullname}
                                     </Checkbox>
                                 ))}
                             </Checkbox.Group>
