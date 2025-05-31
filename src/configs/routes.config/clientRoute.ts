@@ -12,6 +12,15 @@ const clientRoute: Routes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'client.create',
+        path: 'client/create',
+        component: lazy(() => import('@/views/client/ClientCreate')),
+        authority: [ADMIN],
+        meta: {
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default clientRoute
