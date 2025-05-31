@@ -11,3 +11,14 @@ export type FormSectionBaseProps = {
     control: Control<SpecialityFormSchema>
     errors: FieldErrors<SpecialityFormSchema>
 }
+export interface SpecialityFields {
+    id: number
+    fullname: string
+    logoPath?: string
+}
+
+export interface SpecialityFormSchema {
+    id?: number
+    fullname: string
+    logoPath?: string
+}

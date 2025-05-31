@@ -1,18 +1,36 @@
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Button from '@/components/ui/Button'
 import Container from '@/components/shared/Container'
 import { useHelpCenterStore } from '../store/helpCenterStore'
 import { TbSearch } from 'react-icons/tb'
 import SearchFilter from './SearchFilter'
+import { useThemeStore } from '@/store/themeStore'
+import { getSpecialitys } from '@/services/SpecialityService'
+import { SpecialityFields } from '@/views/adm/Dashboard/DashboardSpeciality/types'
 
 const TopSection = () => {
 
     const inputRef = useRef<HTMLInputElement>(null)
+    const [specialities, setSpecialities] = useState<SpecialityFields[]>([])
+    const [selectedSpeciality, setSelectedSpeciality] = useState<number | null>(null)
 
     const setQueryText = useHelpCenterStore((state) => state.setQueryText)
     const setSelectedTopic = useHelpCenterStore(
         (state) => state.setSelectedTopic,
     )
+
+    useEffect(() => {
+        const fetchSpecialities = async () => {
+            try {
+                const data = await getSpecialitys()
+                setSpecialities(data)
+            } catch (error) {
+                console.error('Erro ao carregar especialidades:', error)
+            }
+        }
+
+        fetchSpecialities()
+    }, [])
 
     const handleSetQueryText = () => {
         const value = inputRef.current?.value
@@ -20,6 +38,34 @@ const TopSection = () => {
         if (value) {
             setQueryText(value)
             setSelectedTopic('')
+        }
+    }
+
+    const handleSpecialityFilter = async (specialityId: number) => {
+        try {
+            setSelectedSpeciality(specialityId)
+            
+            // Chamar a API de busca com filtro por especialidade
+            const response = await fetch('/contractor/search/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    specialityId: specialityId
+                })
+            })
+            
+            if (response.ok) {
+                const contractors = await response.json()
+                // Aqui você pode emitir um evento ou usar um contexto para atualizar a lista de contractors
+                // Por exemplo, usando um evento customizado
+                window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
+                    detail: { contractors, specialityId } 
+                }))
+            }
+        } catch (error) {
+            console.error('Erro ao filtrar por especialidade:', error)
         }
     }
 
@@ -69,18 +115,19 @@ const TopSection = () => {
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4 bg-transparent">
-                    <Button className="rounded-full text-sm font-normal hover:bg-gray-100">
-                        Pintura
-                    </Button>
-                    <Button className="rounded-full text-sm font-normal hover:bg-gray-100">
-                        Marcenaria
-                    </Button>
-                    <Button className="rounded-full text-sm font-normal hover:bg-gray-100">
-                        Carpintaria
-                    </Button>
-                    <Button className="rounded-full text-sm font-normal hover:bg-gray-100">
-                        Serviços Gerais
-                    </Button>
+                    {specialities.map((speciality) => (
+                        <Button 
+                            key={speciality.id}
+                            className={`rounded-full text-sm font-normal hover:bg-gray-100 ${
+                                selectedSpeciality === speciality.id 
+                                    ? 'bg-primary text-white hover:bg-primary-dark' 
+                                    : ''
+                            }`}
+                            onClick={() => handleSpecialityFilter(speciality.id)}
+                        >
+                            {speciality.fullname}
+                        </Button>
+                    ))}
                 </div>
             </Container>
         </section>

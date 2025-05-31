@@ -139,3 +139,16 @@ export async function apiSearchContractors<T = ContractorOverview[]>(params?: {
         }, 500)
     })
 }
+
+export async function apiSearchContractorsBySpeciality<T = ContractorOverview[]>(specialityId: number): Promise<T> {
+    // Simula busca com filtro por ID da especialidade
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const filteredContractors = mockContractors.filter(contractor =>
+                contractor.specialities.some(spec => spec.speciality.id === specialityId)
+            )
+            
+            resolve(filteredContractors as T)
+        }, 500)
+    })
+}
