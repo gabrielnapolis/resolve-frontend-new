@@ -11,6 +11,7 @@ import ConfirmDialog from '@/components/shared/ConfirmDialog'
 import { TbTrash } from 'react-icons/tb'
 import { apiCreateClient } from '@/services/ClientService'
 import { z } from 'zod'
+import InputMask from 'react-input-mask';
 
 type ClientFormData = {
     fullname: string
@@ -32,7 +33,7 @@ const validationSchema = z
             .string()
             .min(6, 'Confirmação de senha deve ter pelo menos 6 caracteres'),
         birthday: z.string().min(8, 'Data deve ter 8 dígitos'),
-        cpf: z.string().min(11, 'CPF deve ter 11 dígitos'),
+        cpf: z.string().min(14, 'CPF deve ter 14 dígitos'), // Updated cpf validation
     })
     .refine((data) => data.email === data.emailConfirm, {
         message: 'Emails não coincidem',
@@ -76,7 +77,7 @@ const ClientCreate = () => {
         }
 
         if (field === 'cpf') {
-            processedValue = value.replace(/\D/g, '').slice(0, 11)
+            processedValue = value
         }
 
         setFormData((prev) => ({
@@ -204,7 +205,10 @@ const ClientCreate = () => {
                                     invalid={!!errors.cpf}
                                     errorMessage={errors.cpf}
                                 >
-                                    <Input
+                                    <InputMask
+                                        component={Input}
+                                        mask="___.___.___-__"
+                                        replacement={{ _: /\d/ }}
                                         value={formData.cpf}
                                         onChange={(e) =>
                                             handleInputChange(
@@ -212,8 +216,7 @@ const ClientCreate = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        placeholder="Informe seu CPF"
-                                        maxLength={11}
+                                        placeholder="Digite seu CPF"
                                         invalid={!!errors.cpf}
                                     />
                                 </FormItem>
