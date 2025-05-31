@@ -1,22 +1,16 @@
 import Article from './Article'
 import { useHelpCenterStore } from '../store/helpCenterStore'
 import { categoryIcon } from '../utils'
-import { apiGetSupportHubCategories } from '@/services/HelpCenterService'
 import isLastChild from '@/utils/isLastChild'
-import useSWR from 'swr'
+import { categoriesData, articleListData } from '@/mock/data/helpCenterData'
 
 import type { GetSupportHubCategoriesResponse } from '../types'
 
 const Categories = () => {
-    const { data } = useSWR(
-        ['/helps/categories'],
-        () => apiGetSupportHubCategories<GetSupportHubCategoriesResponse>(),
-        {
-            revalidateOnFocus: false,
-            revalidateIfStale: false,
-            revalidateOnReconnect: false,
-        },
-    )
+    const data: GetSupportHubCategoriesResponse = {
+        categories: categoriesData,
+        popularArticles: articleListData.filter(article => article.starred),
+    }
 
     const setSelectedTopic = useHelpCenterStore(
         (state) => state.setSelectedTopic,

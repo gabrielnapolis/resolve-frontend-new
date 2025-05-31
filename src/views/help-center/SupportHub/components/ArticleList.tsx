@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Article from './Article'
 import { categoryLabel } from '../utils'
 import { useHelpCenterStore } from '../store/helpCenterStore'
-import { apiGetSupportHubArticles } from '@/services/HelpCenterService'
 import isLastChild from '@/utils/isLastChild'
 import NoDataFound from '@/assets/svg/NoDataFound'
-import useSWRMutation from 'swr/mutation'
 import { TbArrowNarrowLeft } from 'react-icons/tb'
+import { articleListData } from '@/mock/data/helpCenterData'
 import type { GetSupportHubArticlesResponse } from '../types'
 
 type ArticlesProps = {
@@ -15,15 +14,7 @@ type ArticlesProps = {
 }
 
 const Articles = ({ query, topic }: ArticlesProps) => {
-    const { trigger, data } = useSWRMutation(
-        [`/api/helps/articles`, { query, topic }],
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ([_, params]) =>
-            apiGetSupportHubArticles<
-                GetSupportHubArticlesResponse,
-                { query: string; topic: string }
-            >(params),
-    )
+    const [data, setData] = useState<GetSupportHubArticlesResponse>([])
 
     const setQueryText = useHelpCenterStore((state) => state.setQueryText)
     const setSelectedTopic = useHelpCenterStore(
@@ -32,9 +23,25 @@ const Articles = ({ query, topic }: ArticlesProps) => {
 
     useEffect(() => {
         if (topic || query) {
-            trigger()
+            let filteredData = articleListData
+
+            // Filter by topic if provided
+            if (topic) {
+                filteredData = filteredData.filter(article => article.category === topic)
+            }
+
+            // Filter by query if provided
+            if (query) {
+                filteredData = filteredData.filter(article => 
+                    article.title.toLowerCase().includes(query.toLowerCase()) ||
+                    article.content.toLowerCase().includes(query.toLowerCase())
+                )
+            }
+
+            setData(filteredData)
+        } else {
+            setData([])
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [topic, query])
 
     const handleBack = () => {

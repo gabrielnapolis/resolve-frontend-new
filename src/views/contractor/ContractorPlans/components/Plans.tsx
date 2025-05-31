@@ -11,6 +11,39 @@ import { NumericFormat } from 'react-number-format'
 import { TbCheck } from 'react-icons/tb'
 import type { GetPricingPanResponse } from '../types'
 
+const mockPricingData: GetPricingPanResponse = {
+    plans: [
+        {
+            id: 'basic',
+            name: 'Básico',
+            description: 'Plano ideal para iniciantes',
+            price: { monthly: 29.90, annually: 299.00 },
+            paymentCycle: 'mês',
+            recommended: false,
+            features: ['feature1', 'feature2']
+        },
+        {
+            id: 'premium',
+            name: 'Premium',
+            description: 'Plano recomendado para profissionais',
+            price: { monthly: 59.90, annually: 599.00 },
+            paymentCycle: 'mês',
+            recommended: true,
+            features: ['feature1', 'feature2', 'feature3']
+        },
+        {
+            id: 'enterprise',
+            name: 'Enterprise',
+            description: 'Plano para grandes empresas',
+            price: { monthly: 99.90, annually: 999.00 },
+            paymentCycle: 'mês',
+            recommended: false,
+            features: ['feature1', 'feature2', 'feature3', 'feature4']
+        }
+    ],
+    featuresModel: []
+}
+
 const Plans = () => {
     const { paymentCycle, setPaymentDialog, setSelectedPlan } =
         usePricingStore()
@@ -19,15 +52,7 @@ const Plans = () => {
     const subcription = query.get('subcription')
     const cycle = query.get('cycle')
 
-    const { data } = useSWR(
-        ['/api/pricing'],
-        () => apiGetPricingPlans<GetPricingPanResponse>(),
-        {
-            revalidateOnFocus: false,
-            revalidateIfStale: false,
-            revalidateOnReconnect: false,
-        },
-    )
+    const data = mockPricingData
 
     return (
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 xl:gap-4">
