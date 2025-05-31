@@ -24,3 +24,11 @@ export async function apiGetSpecialityList<T = SpecialityFields[]>(): Promise<T>
         method: 'get',
     })
 }
+
+export async function apiCreateContractor<T = any>(data: any): Promise<T> {
+    return ApiService.fetchDataWithAxios<T>({
+        url: '/contractor',
+        method: 'post',
+        data,
+    })
+}
