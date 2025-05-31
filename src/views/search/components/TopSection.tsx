@@ -4,7 +4,6 @@ import Container from '@/components/shared/Container'
 import { useHelpCenterStore } from '../store/helpCenterStore'
 import { TbSearch } from 'react-icons/tb'
 import SearchFilter from './SearchFilter'
-import { useThemeStore } from '@/store/themeStore'
 import { getSpecialitys } from '@/services/SpecialityService'
 import { SpecialityFields } from '@/views/adm/Dashboard/DashboardSpeciality/types'
 
@@ -41,25 +40,23 @@ const TopSection = () => {
         }
     }
 
-    const handleSpecialityFilter = async (specialityId: number) => {
+    const handleSpecialityFilter = async (specialityId: number ) => {
         try {
             setSelectedSpeciality(specialityId)
             
-            // Chamar a API de busca com filtro por especialidade
-            const response = await fetch('/contractor/search/', {
+            const response = await fetch('/contractor/search', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    specialityId: specialityId
+                    speciality: specialityId
                 })
             })
             
             if (response.ok) {
                 const contractors = await response.json()
-                // Aqui você pode emitir um evento ou usar um contexto para atualizar a lista de contractors
-                // Por exemplo, usando um evento customizado
+
                 window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
                     detail: { contractors, specialityId } 
                 }))
