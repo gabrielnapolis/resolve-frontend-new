@@ -5,6 +5,7 @@ import { useHelpCenterStore } from '../store/helpCenterStore'
 import { TbSearch } from 'react-icons/tb'
 import SearchFilter from './SearchFilter'
 import { getSpecialitys } from '@/services/SpecialityService'
+import { apiGetContractorsList } from '@/services/ContractorService'
 import { SpecialityFields } from '@/views/adm/Dashboard/DashboardSpeciality/types'
 
 const TopSection = () => {
@@ -31,12 +32,44 @@ const TopSection = () => {
         fetchSpecialities()
     }, [])
 
-    const handleSetQueryText = () => {
+    const handleSetQueryText = async () => {
         const value = inputRef.current?.value
 
         if (value) {
             setQueryText(value)
             setSelectedTopic('')
+            
+            try {
+                // Buscar todos os contractors e filtrar pelo texto
+                const response = await apiGetContractorsList()
+                const allContractors = response.list || []
+                
+                const filteredContractors = allContractors.filter(contractor =>
+                    contractor.fullname.toLowerCase().includes(value.toLowerCase()) ||
+                    contractor.description?.toLowerCase().includes(value.toLowerCase()) ||
+                    contractor.city.toLowerCase().includes(value.toLowerCase()) ||
+                    contractor.specialities?.some(spec => 
+                        spec.speciality.fullname.toLowerCase().includes(value.toLowerCase())
+                    )
+                )
+                
+                window.dispatchEvent(new CustomEvent('searchFiltered', { 
+                    detail: { contractors: filteredContractors } 
+                }))
+            } catch (error) {
+                console.error('Erro ao filtrar contractors por busca:', error)
+            }
+        } else {
+            // Se não há texto, recarregar todos os contractors
+            try {
+                const response = await apiGetContractorsList()
+                const allContractors = response.list || []
+                window.dispatchEvent(new CustomEvent('searchFiltered', { 
+                    detail: { contractors: allContractors } 
+                }))
+            } catch (error) {
+                console.error('Erro ao recarregar contractors:', error)
+            }
         }
     }
 
@@ -44,25 +77,37 @@ const TopSection = () => {
         try {
             setSelectedSpeciality(specialityId)
             
-            const response = await fetch('/contractor/search', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    speciality: specialityId
-                })
-            })
+            // Buscar todos os contractors e filtrar pela especialidade
+            const response = await apiGetContractorsList()
+            const allContractors = response.list || []
             
-            if (response.ok) {
-                const contractors = await response.json()
+            const filteredContractors = allContractors.filter(contractor =>
+                contractor.specialities?.some(spec => spec.speciality.id === specialityId)
+            )
 
-                window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
-                    detail: { contractors, specialityId } 
-                }))
-            }
+            window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
+                detail: { contractors: filteredContractors, specialityId } 
+            }))
         } catch (error) {
             console.error('Erro ao filtrar por especialidade:', error)
+        }
+    }
+
+    const handleClearFilters = async () => {
+        try {
+            if (inputRef.current) {
+                inputRef.current.value = ''
+            }
+            setQueryText('')
+            
+            const response = await apiGetContractorsList()
+            const allContractors = response.list || []
+            
+            window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
+                detail: { contractors: allContractors } 
+            }))
+        } catch (error) {
+            console.error('Erro ao limpar filtros:', error)
         }
     }
 
@@ -98,6 +143,7 @@ const TopSection = () => {
                                         .length <= 1
                                 ) {
                                     setQueryText('')
+                                    handleClearFilters()
                                 }
                             }}
                         />
@@ -120,7 +166,15 @@ const TopSection = () => {
                                     ? 'bg-primary text-white hover:bg-primary-dark' 
                                     : ''
                             }`}
-                            onClick={() => handleSpecialityFilter(speciality.id)}
+                            onClick={() => {
+                                if (selectedSpeciality === speciality.id) {
+                                    // Se já está selecionado, limpar filtro
+                                    setSelectedSpeciality(null)
+                                    handleClearFilters()
+                                } else {
+                                    handleSpecialityFilter(speciality.id)
+                                }
+                            }}
                         >
                             {speciality.fullname}
                         </Button>

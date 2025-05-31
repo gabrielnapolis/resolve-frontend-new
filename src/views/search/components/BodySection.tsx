@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Container from '@/components/shared/Container'
 import Loading from '@/components/shared/Loading'
 import CardContractor from './CardContractor'
-import { apiGetContractorsList } from '@/services/SearchService'
+import { apiGetContractorsList } from '@/services/ContractorService'
 import type { ContractorOverview } from '../types'
 
 const BodySection = () => {
@@ -15,7 +15,9 @@ const BodySection = () => {
             try {
                 setLoading(true)
                 const response = await apiGetContractorsList()
-                setContractors(response)
+                // A resposta da API real vem com uma estrutura { list: [], total: number }
+                const contractorData = response.list || []
+                setContractors(contractorData)
             } catch (error) {
                 console.error('Erro ao carregar contractors:', error)
             } finally {
@@ -31,10 +33,18 @@ const BodySection = () => {
             setContractors(filteredContractors)
         }
 
+        // Listener para busca por texto
+        const handleSearchFiltered = (event: CustomEvent) => {
+            const { contractors: filteredContractors } = event.detail
+            setContractors(filteredContractors)
+        }
+
         window.addEventListener('contractorsFiltered', handleContractorsFiltered as EventListener)
+        window.addEventListener('searchFiltered', handleSearchFiltered as EventListener)
 
         return () => {
             window.removeEventListener('contractorsFiltered', handleContractorsFiltered as EventListener)
+            window.removeEventListener('searchFiltered', handleSearchFiltered as EventListener)
         }
     }, [])
 
