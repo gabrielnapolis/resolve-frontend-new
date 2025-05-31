@@ -1,8 +1,7 @@
 import useSWR from 'swr'
 import { useContractorListStore } from '../store/contractorListStore'
-import type { GetContractorColumnsListResponse } from '../types'
-import type { TableQueries } from '@/@types/common'
 import { apiGetContractorsList } from '@/services/ContractorService'
+import { ContractorOverview } from '@/views/search/types'
 
 export default function useContractorList() {
     const {
@@ -19,7 +18,7 @@ export default function useContractorList() {
         ['', { ...tableData, ...filterData }],
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         ([_, params]) =>
-            apiGetContractorsList<GetContractorColumnsListResponse, TableQueries>(),
+            apiGetContractorsList<ContractorOverview>(),
         {
             revalidateOnFocus: false,
         },
@@ -28,7 +27,7 @@ export default function useContractorList() {
     console.log('contractorList', data);
     const contractorList = data || []
 
-    const contractorListTotal = data?.total || 0
+    const contractorListTotal =  0
 
     return {
         contractorList,

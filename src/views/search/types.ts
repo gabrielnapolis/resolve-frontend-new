@@ -53,6 +53,7 @@ export type GetSupportHubArticlesResponse = Articles
 export interface ContractorOverview {
   id: number;
   picture: string;
+  active: string;
   fullname: string;
   fone: string;
   email: string;

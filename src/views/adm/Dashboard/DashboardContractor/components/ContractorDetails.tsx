@@ -11,6 +11,7 @@ import Loading from '@/components/shared/Loading'
 import { apiGetContractorById } from '@/services/ContractorService'
 import { ContractorDetailResponse } from '../types'
 import { HiOutlineUser, HiOutlinePhone, HiOutlineMail, HiOutlineLocationMarker, HiOutlineCalendar, HiOutlineArrowLeft } from 'react-icons/hi'
+import { formatCPF, formatDate, formatPhoneNumber } from '@/utils/formatMask'
 
 const ContractorDetails = () => {
     const { id } = useParams<{ id: string }>()
@@ -101,11 +102,6 @@ const ContractorDetails = () => {
                                     {contractor.active ? 'Ativo' : 'Inativo'}
                                 </Tag>
                             </div>
-                            {contractor.commercialName && (
-                                <p className="text-gray-600 dark:text-gray-400 mb-2">
-                                    Nome Comercial: {contractor.commercialName}
-                                </p>
-                            )}
                             {contractor.description && (
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                                     {contractor.description}
@@ -137,21 +133,21 @@ const ContractorDetails = () => {
                             <HiOutlinePhone className="text-gray-500 text-xl" />
                             <div>
                                 <p className="text-sm text-gray-500">Telefone</p>
-                                <p className="font-medium">{contractor.fone}</p>
+                                <p className="font-medium">{formatPhoneNumber(contractor.fone)}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
                             <HiOutlineCalendar className="text-gray-500 text-xl" />
                             <div>
                                 <p className="text-sm text-gray-500">Data de Nascimento</p>
-                                <p className="font-medium">{contractor.birthday}</p>
+                                <p className="font-medium">{formatDate(contractor.birthday)}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
                             <HiOutlineUser className="text-gray-500 text-xl" />
                             <div>
                                 <p className="text-sm text-gray-500">CPF</p>
-                                <p className="font-medium">{contractor.cpf}</p>
+                                <p className="font-medium">{formatCPF(contractor.cpf)}</p>
                             </div>
                         </div>
                     </div>

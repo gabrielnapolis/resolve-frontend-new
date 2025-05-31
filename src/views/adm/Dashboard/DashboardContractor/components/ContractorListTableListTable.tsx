@@ -9,19 +9,18 @@ import { TbPencil, TbEye, TbLock } from 'react-icons/tb'
 import type { OnSortParam, ColumnDef, Row } from '@/components/shared/DataTable'
 import type { TableQueries } from '@/@types/common'
 import useContractorList from '../hooks/useContractorList'
-import { ContractorColumns } from '../types'
-
+import { ContractorOverview } from '@/views/search/types'
 
 type ContractorTableProps = {
-    data: ContractorColumns[]
+    data: ContractorOverview[]
     className?: string
-} 
+}
 const statusColor: Record<string, string> = {
     active: 'bg-emerald-200 dark:bg-emerald-200 text-gray-900 dark:text-gray-900',
     blocked: 'bg-red-200 dark:bg-red-200 text-gray-900 dark:text-gray-900',
 }
 
-const NameColumn = ({ row }: { row: ContractorColumns }) => {
+const NameColumn = ({ row }: { row: ContractorOverview }) => {
     return (
         <div className="flex items-center">
             <Avatar size={40} shape="circle" src={'/img/default-avatar.png'} />
@@ -35,13 +34,7 @@ const NameColumn = ({ row }: { row: ContractorColumns }) => {
     )
 }
 
-const ActionColumn = ({
-    onEdit,
-    onViewDetail,
-}: {
-    onEdit: () => void
-    onViewDetail: () => void
-}) => {
+const ActionColumn = ({ onViewDetail }: { onViewDetail: () => void }) => {
     return (
         <div className="flex gap-3">
             <Tooltip title="Visualizar">
@@ -67,7 +60,6 @@ const ActionColumn = ({
 }
 
 const ContractorListTable = () => {
-    
     const navigate = useNavigate()
 
     const {
@@ -80,16 +72,12 @@ const ContractorListTable = () => {
         setSelectedContractor,
         selectedContractor,
     } = useContractorList()
-    
-    const handleEdit = (contractor: ContractorColumns) => {
-        
-    }
 
-    const handleViewDetails = (contractor: ContractorColumns) => {
+    const handleViewDetails = (contractor: ContractorOverview) => {
         navigate(`/adm/dashboard/contractor/details/${contractor.id}`)
     }
 
-    const columns: ColumnDef<ContractorColumns>[] = useMemo(
+    const columns: ColumnDef<ContractorOverview>[] = useMemo(
         () => [
             {
                 header: 'Nome',
@@ -102,10 +90,6 @@ const ContractorListTable = () => {
             {
                 header: 'Email',
                 accessorKey: 'email',
-            },
-            {
-                header: 'Telefone',
-                accessorKey: 'fone',
             },
             {
                 header: 'Cidade',
@@ -122,8 +106,16 @@ const ContractorListTable = () => {
                     const row = props.row.original
                     return (
                         <div className="flex items-center">
-                            <Tag className={row.active ? statusColor.active : statusColor.blocked}>
-                                <span className="capitalize">{row.active ? 'Ativo' : 'Inativo'}</span>
+                            <Tag
+                                className={
+                                    row.active
+                                        ? statusColor.active
+                                        : statusColor.blocked
+                                }
+                            >
+                                <span className="capitalize">
+                                    {row.active ? 'Ativo' : 'Inativo'}
+                                </span>
                             </Tag>
                         </div>
                     )
@@ -134,7 +126,6 @@ const ContractorListTable = () => {
                 id: 'action',
                 cell: (props) => (
                     <ActionColumn
-                        onEdit={() => handleEdit(props.row.original)}
                         onViewDetail={() =>
                             handleViewDetails(props.row.original)
                         }
@@ -172,11 +163,14 @@ const ContractorListTable = () => {
         handleSetTableData(newTableData)
     }
 
-    const handleRowSelect = (checked: boolean, row: ContractorColumns) => {
-        setSelectedContractor(checked, row as ContractorColumns)
+    const handleRowSelect = (checked: boolean, row: ContractorOverview) => {
+        setSelectedContractor(checked, row as ContractorOverview)
     }
 
-    const handleAllRowSelect = (checked: boolean, rows: Row<ContractorColumns>[]) => {
+    const handleAllRowSelect = (
+        checked: boolean,
+        rows: Row<ContractorOverview>[],
+    ) => {
         if (checked) {
             const originalRows = rows.map((row) => row.original)
             setSelectAllContractor(originalRows)
@@ -189,8 +183,12 @@ const ContractorListTable = () => {
         <DataTable
             selectable
             columns={columns}
-            data={contractorList as ContractorColumns[]}
-            noData={!isLoading && Array.isArray(contractorList) && contractorList.length === 0}
+            data={contractorList as ContractorOverview[]}
+            noData={
+                !isLoading &&
+                Array.isArray(contractorList) &&
+                contractorList.length === 0
+            }
             skeletonAvatarColumns={[0]}
             skeletonAvatarProps={{ width: 28, height: 28 }}
             loading={isLoading}

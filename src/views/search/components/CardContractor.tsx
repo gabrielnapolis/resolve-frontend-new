@@ -1,4 +1,3 @@
-
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import Tag from '@/components/ui/Tag'
@@ -6,6 +5,7 @@ import { Avatar } from '@/components/ui'
 import { HiOutlineUser, HiOutlineStar } from 'react-icons/hi'
 import { HiStar } from 'react-icons/hi2'
 import type { ContractorOverview } from '../types'
+import { formatPhoneNumber } from '@/utils/formatMask'
 
 interface CardContractorProps {
     contractor: ContractorOverview
@@ -20,8 +20,12 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
         for (let i = 1; i <= 5; i++) {
             stars.push(
                 <span key={i} className="text-yellow-400">
-                    {i <= rating ? <HiStar className="w-4 h-4" /> : <HiOutlineStar className="w-4 h-4" />}
-                </span>
+                    {i <= rating ? (
+                        <HiStar className="w-4 h-4" />
+                    ) : (
+                        <HiOutlineStar className="w-4 h-4" />
+                    )}
+                </span>,
             )
         }
         return stars
@@ -42,7 +46,10 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
     const cardFooter = (
         <div className="flex flex-wrap gap-2">
             {contractor.specialities.map((spec, index) => (
-                <Tag key={index} className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                <Tag
+                    key={index}
+                    className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                >
                     {spec.speciality.fullname}
                 </Tag>
             ))}
@@ -72,18 +79,25 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
                     <div className="flex-1 space-y-2">
                         <div className="space-y-1">
                             <p className="text-sm text-gray-600 dark:text-gray-400">
-                                <span className="font-medium">Telefone:</span> {contractor.fone}
+                                <span className="font-medium">Telefone:</span>{' '}
+                                {formatPhoneNumber(contractor.fone)}
                             </p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
-                                <span className="font-medium">Email:</span> {contractor.email}
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                <span className="font-medium">Localização:</span> {contractor.city}, {contractor.state}
+                                <span className="font-medium">
+                                    Localização:
+                                </span>{' '}
+                                <span className="capitalize">
+                                    {contractor.city}
+                                </span>
+                                ,{' '}
+                                <span className="uppercase">
+                                    {contractor.state}
+                                </span>
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
                 {contractor.description && (
                     <div>
                         <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
@@ -91,7 +105,7 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
                         </p>
                     </div>
                 )}
-                
+
                 <div className="flex gap-2 pt-2">
                     <Button size="sm" variant="solid" className="flex-1">
                         Ver Perfil
