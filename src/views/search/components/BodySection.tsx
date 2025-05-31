@@ -24,6 +24,18 @@ const BodySection = () => {
         }
 
         fetchContractors()
+
+        // Listener para filtro por especialidade
+        const handleContractorsFiltered = (event: CustomEvent) => {
+            const { contractors: filteredContractors } = event.detail
+            setContractors(filteredContractors)
+        }
+
+        window.addEventListener('contractorsFiltered', handleContractorsFiltered as EventListener)
+
+        return () => {
+            window.removeEventListener('contractorsFiltered', handleContractorsFiltered as EventListener)
+        }
     }, [])
 
     if (loading) {
