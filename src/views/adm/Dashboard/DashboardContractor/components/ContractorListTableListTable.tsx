@@ -20,16 +20,17 @@ const statusColor: Record<string, string> = {
     blocked: 'bg-red-200 dark:bg-red-200 text-gray-900 dark:text-gray-900',
 }
 
-const NameColumn = ({ row }: { row: ContractorOverview }) => {
+const NameColumn = ({ row, onViewDetail }: { row: ContractorOverview; onViewDetail: () => void }) => {
     return (
         <div className="flex items-center">
             <Avatar size={40} shape="circle" src={'/img/default-avatar.png'} />
-            <Link
-                className={`hover:text-primary ml-2 rtl:mr-2 font-semibold text-gray-900 dark:text-gray-100`}
-                to={`/concepts/customers/customer-details/${row.id}`}
+            <span
+                className={`hover:text-primary ml-2 rtl:mr-2 font-semibold text-gray-900 dark:text-gray-100 cursor-pointer`}
+                onClick={onViewDetail}
             >
+
                 {row.fullname}
-            </Link>
+            </span>
         </div>
     )
 }
@@ -84,7 +85,7 @@ const ContractorListTable = () => {
                 accessorKey: 'name',
                 cell: (props) => {
                     const row = props.row.original
-                    return <NameColumn row={row} />
+                    return <NameColumn row={row} onViewDetail={() => handleViewDetails(row)}/>
                 },
             },
             {

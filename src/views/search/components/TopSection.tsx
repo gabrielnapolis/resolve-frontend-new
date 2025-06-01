@@ -42,7 +42,7 @@ const TopSection = () => {
             try {
                 // Buscar todos os contractors e filtrar pelo texto
                 const response = await apiGetContractorsList()
-                const allContractors = response.list || []
+                const allContractors = response || []
                 
                 const filteredContractors = allContractors.filter(contractor =>
                     contractor.fullname.toLowerCase().includes(value.toLowerCase()) ||
@@ -63,7 +63,7 @@ const TopSection = () => {
             // Se não há texto, recarregar todos os contractors
             try {
                 const response = await apiGetContractorsList()
-                const allContractors = response.list || []
+                const allContractors = response || []
                 window.dispatchEvent(new CustomEvent('searchFiltered', { 
                     detail: { contractors: allContractors } 
                 }))
@@ -79,7 +79,7 @@ const TopSection = () => {
             
             // Buscar todos os contractors e filtrar pela especialidade
             const response = await apiGetContractorsList()
-            const allContractors = response.list || []
+            const allContractors = response || []
             
             const filteredContractors = allContractors.filter(contractor =>
                 contractor.specialities?.some(spec => spec.speciality.id === specialityId)
@@ -101,7 +101,7 @@ const TopSection = () => {
             setQueryText('')
             
             const response = await apiGetContractorsList()
-            const allContractors = response.list || []
+            const allContractors = response || []
             
             window.dispatchEvent(new CustomEvent('contractorsFiltered', { 
                 detail: { contractors: allContractors } 
@@ -163,7 +163,7 @@ const TopSection = () => {
                             key={speciality.id}
                             className={`rounded-full text-sm font-normal hover:bg-gray-100 ${
                                 selectedSpeciality === speciality.id 
-                                    ? 'bg-primary text-white hover:bg-primary-dark' 
+                                    ? 'bg-primary text-white' 
                                     : ''
                             }`}
                             onClick={() => {

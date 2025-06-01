@@ -1,9 +1,8 @@
-import { DASHBOARDS_PREFIX_PATH } from '@/constants/route.constant'
 import {
     NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_ITEM,
 } from '@/constants/navigation.constant'
-import { ADMIN, USER } from '@/constants/roles.constant'
+import { ADMIN } from '@/constants/roles.constant'
 import type { NavigationTree } from '@/@types/navigation'
 
 const dashboardsNavigationConfig: NavigationTree[] = [
@@ -14,7 +13,7 @@ const dashboardsNavigationConfig: NavigationTree[] = [
         translateKey: 'nav.createContractor',
         icon: 'dashboardProject',
         type: NAV_ITEM_TYPE_TITLE,
-        authority: [],
+        authority: [ADMIN],
         subMenu: [
             {
                 key: 'admin.dashboard.contractors',

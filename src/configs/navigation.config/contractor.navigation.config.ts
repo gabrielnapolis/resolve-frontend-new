@@ -1,5 +1,6 @@
 import type { NavigationTree } from '@/@types/navigation'
 import { NAV_ITEM_TYPE_ITEM, NAV_ITEM_TYPE_TITLE } from '@/constants/navigation.constant'
+import { CONTRACTOR } from '@/constants/roles.constant';
 
 const contractorNavigationConfig: NavigationTree[] = [
     {
