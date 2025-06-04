@@ -18,12 +18,24 @@ type Auth = {
     ) => void
 }
 
-const defaultFunctionPlaceHolder = async (): AuthResult => {
-    await new Promise((resolve) => setTimeout(resolve, 0))
-    return {
-        status: '',
-        message: '',
+const defaultFunctionPlaceHolder = async (data:any): AuthResult => {
+ const url = process.env.NEXT_PUBLIC_API;
+    let response = await fetch(`${url}/auth/login`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.status == 200) {
+        let data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("configs", JSON.stringify(data.configs));
+ return { status: 'success', message: 'Usuário logado' }
     }
+
+    return { status: 'failed', message: 'Usuário ou senha inválido.' }
 }
 
 const defaultOAuthSignInPlaceHolder = (
@@ -38,8 +50,8 @@ const defaultOAuthSignInPlaceHolder = (
 const AuthContext = createContext<Auth>({
     authenticated: false,
     user: {},
-    signIn: async () => defaultFunctionPlaceHolder(),
-    signUp: async () => defaultFunctionPlaceHolder(),
+    signIn: async (data) => defaultFunctionPlaceHolder(data),
+    signUp: async (data) => defaultFunctionPlaceHolder(data),
     signOut: () => {},
     oAuthSignIn: defaultOAuthSignInPlaceHolder,
 })

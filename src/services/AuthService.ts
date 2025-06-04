@@ -10,11 +10,23 @@ import type {
 } from '@/@types/auth'
 
 export async function apiSignIn(data: SignInCredential) {
-    return ApiService.fetchDataWithAxios<SignInResponse>({
-        url: endpointConfig.signIn,
-        method: 'post',
-        data,
-    })
+  const url = process.env.NEXT_PUBLIC_API;
+    let response = await fetch(`${url}/auth/login`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.status == 200) {
+        let data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("configs", JSON.stringify(data.configs));
+        return { status: 'success', message: 'Usuário logado' }
+    }
+
+    return { status: 'failed', message: 'Usuário ou senha inválido.' }
 }
 
 export async function apiSignUp(data: SignUpCredential) {

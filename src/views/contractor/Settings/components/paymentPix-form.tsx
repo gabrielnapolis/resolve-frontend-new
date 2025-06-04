@@ -5,12 +5,13 @@ import {
   Card,
 
 } from "@/components/ui/card";
-import Image from "next/image";
+
 import { 
   generateQrCode,
   validatePayment
  } from "./actions";
 import { Input } from "@/components/ui/input";
+import { DoubleSidedImage } from "@/components/shared";
 
 const PaymentPixForm=()=> {
   const [qrCodeData, setQRCodeData] = useState(null as any);
@@ -46,7 +47,10 @@ const validate =()=>{
                <div>
                 {
                   qrCode && (
-                    <Image
+              <DoubleSidedImage
+                                        
+                    darkModeSrc={qrCode}
+                                         
                     src={qrCode}
                     width={300}
                     height={300}
@@ -81,7 +85,7 @@ const validate =()=>{
               <Button type="submit" >Atualizar</Button>
             </div>
           </Card>
-        </form>
+        </form> 
     </>
   );
 }
