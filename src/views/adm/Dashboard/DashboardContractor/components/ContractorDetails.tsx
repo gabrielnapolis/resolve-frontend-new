@@ -10,7 +10,7 @@ import Loading from '@/components/shared/Loading'
 import { apiGetContractorById } from '@/services/ContractorService'
 import { ContractorDetailResponse } from '../types'
 import { HiOutlineUser, HiOutlinePhone, HiOutlineMail, HiOutlineLocationMarker, HiOutlineCalendar, HiOutlineArrowLeft } from 'react-icons/hi'
-import { formatCPF, formatDate, formatPhoneNumber } from '@/utils/formatMask'
+import { formatCPF, formatDate, formatPhoneNumber, getContractorImg } from '@/utils/formatMask'
 
 const ContractorDetails = () => {
     const { id } = useParams<{ id: string }>()
@@ -88,7 +88,7 @@ const ContractorDetails = () => {
                         <Avatar 
                             size={120} 
                             shape="circle" 
-                            src={contractor.picture || '/img/default-avatar.png'}
+                            src={getContractorImg()}
                             icon={<HiOutlineUser />}
                             className="border-4 border-white bg-gray-100 text-gray-300 shadow-lg"
                         />

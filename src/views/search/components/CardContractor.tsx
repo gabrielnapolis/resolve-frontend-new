@@ -5,13 +5,21 @@ import { Avatar } from '@/components/ui'
 import { HiOutlineUser, HiOutlineStar } from 'react-icons/hi'
 import { HiStar } from 'react-icons/hi2'
 import type { ContractorOverview } from '../types'
-import { formatPhoneNumber } from '@/utils/formatMask'
+import { formatPhoneNumber, getContractorImg } from '@/utils/formatMask'
+import { useNavigate } from 'react-router-dom'
 
 interface CardContractorProps {
     contractor: ContractorOverview
 }
 
 const CardContractor = ({ contractor }: CardContractorProps) => {
+    const navigate = useNavigate()
+
+    const handleViewDetails = (contractor: ContractorOverview) => {
+        // Criar novo componente para exibir os detalhes do prestador para o cliente.
+        // Essa rota abaixo é apenas para admin
+        navigate(`/adm/dashboard/contractor/details/${contractor.id}`)
+    }
     // Mock rating - futuramente será implementado
     const rating = Math.floor(Math.random() * 5) + 1
 
@@ -72,7 +80,7 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
                 <div className="flex items-start gap-4">
                     <Avatar
                         size={60}
-                        src={contractor.picture}
+                        src={getContractorImg()}
                         icon={<HiOutlineUser />}
                         className="flex-shrink-0"
                     />
@@ -107,7 +115,12 @@ const CardContractor = ({ contractor }: CardContractorProps) => {
                 )}
 
                 <div className="flex gap-2 pt-2">
-                    <Button size="sm" variant="solid" className="flex-1">
+                    <Button
+                        size="sm"
+                        variant="solid"
+                        className="flex-1"
+                        onClick={() => handleViewDetails(contractor)}
+                    >
                         Ver Perfil
                     </Button>
                     <Button size="sm" className="flex-1">

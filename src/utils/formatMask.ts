@@ -17,11 +17,17 @@ export function formatCPF(cpf: string): string {
 }
 
 export function formatDate(date: string): string {
-    const cleaned = ('' + date).replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{2})(\d{2})(\d{4})$/);
-    
+    const cleaned = ('' + date).replace(/\D/g, '')
+    const match = cleaned.match(/^(\d{2})(\d{2})(\d{4})$/)
+
     if (match) {
-        return `${match[1]}/${match[2]}/${match[3]}`;
+        return `${match[1]}/${match[2]}/${match[3]}`
     }
-    return date;
+    return date
+}
+
+export function getContractorImg(): string {
+    const randomNum = Math.floor(Math.random() * 8) + 1
+    const formattedNum = randomNum.toString().padStart(2, '0')
+    return `/img/profiles/${formattedNum}.png`
 }

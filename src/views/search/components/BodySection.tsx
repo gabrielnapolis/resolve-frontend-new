@@ -10,6 +10,7 @@ const BodySection = () => {
     const [contractors, setContractors] = useState<ContractorOverview[]>([])
     const [loading, setLoading] = useState(true)
 
+
     useEffect(() => {
         const fetchContractors = async () => {
             try {
@@ -60,6 +61,7 @@ const BodySection = () => {
         )
     }
 
+    
     return (
         <div className="my-12">
             <Container>
