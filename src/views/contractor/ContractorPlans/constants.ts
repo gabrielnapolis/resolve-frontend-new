@@ -5,33 +5,33 @@ export const featuresList: {
     {
         id: 'visibilidade',
         description: {
-            basic: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
-            standard: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
-            pro: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
+            weekly: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
+            monthly: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
+            annual: 'Visibilidade do perfil em toda Goiânia e região (todo estado de Goiás)',
         },
     },
     {
         id: 'marketing',
         description: {
-            basic: 'Marketing completo do perfil dentro da plataforma',
-            standard: 'Marketing completo do perfil dentro da plataforma',
-            pro: 'Marketing completo do perfil dentro da plataforma',
+            weekly: 'Marketing completo do perfil dentro da plataforma',
+            monthly: 'Marketing completo do perfil dentro da plataforma',
+            annual: 'Marketing completo do perfil dentro da plataforma',
         },
     },
     {
         id: 'maiorVisibilidade',
         description: {
-            basic: 'Maior visibilidade do telefone adicionado ao perfil',
-            standard: 'Maior visibilidade do telefone adicionado ao perfil',
-            pro: 'Maior visibilidade do telefone adicionado ao perfil',
+            weekly: 'Maior visibilidade do telefone adicionado ao perfil',
+            monthly: 'Maior visibilidade do telefone adicionado ao perfil',
+            annual: 'Maior visibilidade do telefone adicionado ao perfil',
         },
     },
     {
         id: 'clientes',
         description: {
-            basic: 'Clientes em regiões mais próximas para facilitar o atendimento',
-            standard: 'Clientes em regiões mais próximas para facilitar o atendimento',
-            pro: 'Clientes em regiões mais próximas para facilitar o atendimento',
+            weekly: 'Clientes em regiões mais próximas para facilitar o atendimento',
+            monthly: 'Clientes em regiões mais próximas para facilitar o atendimento',
+            annual: 'Clientes em regiões mais próximas para facilitar o atendimento',
         },
     },
 ]

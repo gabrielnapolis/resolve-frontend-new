@@ -14,15 +14,16 @@ const ContractorListActionTools = () => {
             {/* <CSVLink
                 className="w-full"
                 filename="customerList.csv"
-                data={contractorList}
+                // data={contractorList}
             >
-                <Button
-                    icon={<TbCloudDownload className="text-xl" />}
-                    className="w-full"
-                >
-                    Download
-                </Button>
+                
             </CSVLink> */}
+            <Button
+                icon={<TbCloudDownload className="text-xl" />}
+                className="w-full"
+            >
+                Download
+            </Button>
             <Button
                 variant="solid"
                 icon={<TbUserPlus className="text-xl" />}

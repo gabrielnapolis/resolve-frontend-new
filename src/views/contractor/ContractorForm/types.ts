@@ -20,6 +20,11 @@ export type ContractorFields = {
     specialities: number []
 }
 
+export type Speciality = {
+    id: number
+    fullname: string
+}
+
 export type ContractorFormSchema = ContractorFields
 
 export type FormSectionBaseProps = {

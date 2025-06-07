@@ -5,6 +5,7 @@ import { ADMIN, USER } from '@/constants/roles.constant'
 import dashboardRoute from './dashboardRoute'
 import infoRoute from './infoRoute'
 import contractorRoute from './contractorRoute'
+import clientRoute from './clientRoute'
 
 export const publicRoutes: Routes = [...authRoute]
 
@@ -34,4 +35,5 @@ export const protectedRoutes: Routes = [
     ...infoRoute,
     ...contractorRoute,
     ...dashboardRoute,
+    ...clientRoute
 ]

@@ -46,15 +46,6 @@ const ActionColumn = ({
 }) => {
     return (
         <div className="flex gap-3">
-            <Tooltip title="Editar">
-                <div
-                    className={`text-xl cursor-pointer select-none font-semibold`}
-                    role="button"
-                    onClick={onEdit}
-                >
-                    <TbPencil />
-                </div>
-            </Tooltip>
             <Tooltip title="Visualizar">
                 <div
                     className={`text-xl cursor-pointer select-none font-semibold`}
@@ -96,7 +87,7 @@ const ClientListTable = () => {
     }
 
     const handleViewDetails = (client: ClientColumns) => {
-        // Implement view details logic
+        navigate(`/client/detail/${client.id}`)
     }
 
     const columns: ColumnDef<ClientColumns>[] = useMemo(

@@ -1,7 +1,7 @@
 import type { Control, FieldErrors } from 'react-hook-form'
 
 export type SpecialityFields = {
-    id?: number
+    id: number
     fullname: string
 }
 

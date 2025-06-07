@@ -5,9 +5,9 @@ import Notification from '@/components/ui/Notification'
 import toast from '@/components/ui/toast'
 import ContractorForm from '../ContractorForm'
 import ConfirmDialog from '@/components/shared/ConfirmDialog'
-import sleep from '@/utils/sleep'
 import { TbTrash } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
+import { apiCreateContractor } from '@/services/ContractorService'
 import type { ContractorFormSchema } from '../ContractorForm'
 
 const ContractorEdit = () => {
@@ -18,19 +18,48 @@ const ContractorEdit = () => {
     const [isSubmiting, setIsSubmiting] = useState(false)
 
     const handleFormSubmit = async (values: ContractorFormSchema) => {
-        values.birthday = values.birthday?.replace(/[^\d]+/g, "");
-        values.cpf = values.cpf?.replace(/[^\d]+/g, "");
-        values.fone = values.fone?.replace(/[^\d]+/g, "");
-        values.cep = values.cep?.replace(/[^\d]+/g, "");
-
         setIsSubmiting(true)
-        await sleep(800)
-        setIsSubmiting(false)
-        toast.push(
-            <Notification type="success">Cadastro Realizado!</Notification>,
-            { placement: 'top-center' },
-        )
-        //navigate('/concepts/customers/customer-list')
+        
+        try {
+            // Transform form data to match API format
+            const apiData = {
+                picture: values.picture || "",
+                fullname: values.fullname,
+                email: values.email,
+                fone: values.fone?.replace(/[^\d]+/g, "") || "",
+                birthday: values.birthday?.replace(/[^\d]+/g, "") || "",
+                commercialName: null,
+                description: values.description || "",
+                password: values.password,
+                state: values.state,
+                cep: values.cep?.replace(/[^\d]+/g, "") || "",
+                address: values.address,
+                city: values.city,
+                neighborhood: values.neighborhood,
+                region: "",
+                active: true,
+                subscriberId: null,
+                facebookId: null,
+                specialities: values.specialities // Array of IDs
+            }
+
+            await apiCreateContractor(apiData)
+            
+            toast.push(
+                <Notification type="success">Cadastro Realizado!</Notification>,
+                { placement: 'top-center' },
+            )
+            
+            navigate('/')
+        } catch (error) {
+            console.error('Erro ao cadastrar contractor:', error)
+            toast.push(
+                <Notification type="danger">Erro ao realizar cadastro!</Notification>,
+                { placement: 'top-center' },
+            )
+        } finally {
+            setIsSubmiting(false)
+        }
     }
 
     const handleConfirmDiscard = () => {

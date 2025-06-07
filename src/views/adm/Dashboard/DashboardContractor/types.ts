@@ -1,29 +1,33 @@
-export type GetContractorColumnsListResponse = {
-    list: ContractorColumns[]
-    total: number
-}
+import { ContractorOverview } from "@/views/search/types"
 
-export type Filter = {
-    purchasedProducts: string
-    purchaseChannel: Array<string>
-}
 
-export type ContractorColumns = {
+
+export type ContractorDetailResponse = {
     id: number
-    img: string
     picture: string
     fullname: string
+    cpf: string
     email: string
     fone: string
+    birthday: string
+    commercialName: string | null
+    description: string
+    password: string
+    state: string
+    cep: string
     address: string
     city: string
-    state: string
+    neighborhood: string
+    region: string
+    isAdmin: boolean | null
     active: boolean
-    specialities: {
+    subscriberId: number | null
+    facebookId: string | null
+    specialities: Array<{
         id: number
         speciality: {
             id: number
             fullname: string
         }
-    }[]
+    }>
 }
