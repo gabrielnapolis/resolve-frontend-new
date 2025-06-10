@@ -1,28 +1,5 @@
 import { useEffect, useState } from 'react'
-import Button from '@/components/ui/Button'
-import Tag from '@/components/ui/Tag'
-import Avatar from '@/components/ui/Avatar'
-import Notification from '@/components/ui/Notification'
-import toast from '@/components/ui/toast'
-import CreditCardDialog from '@/components/view/CreditCardDialog'
-import BillingHistory from './BillingHistory'
-import { apiGetSettingsBilling } from '@/services/AccontsService'
-import classNames from '@/utils/classNames'
-import isLastChild from '@/utils/isLastChild'
-import sleep from '@/utils/sleep'
-import { TbPlus } from 'react-icons/tb'
-import useSWR from 'swr'
-import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom'
-import { PiLightningFill } from 'react-icons/pi'
-import { NumericFormat } from 'react-number-format'
-
-import type {
-    GetSettingsBillingResponse,
-    CreditCard,
-    CreditCardInfo,
-} from '../types'
-import ActiveSubscription from './ActiveSubscription'
 import PaymentCardForm from './paymentCard-form'
 import PaymentPixForm from './paymentPix-form'
 import PaymentType from './paymentType-form'

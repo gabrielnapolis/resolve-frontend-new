@@ -16,12 +16,8 @@ import type { ReactNode } from 'react'
 const { MenuItem } = Menu
 
 const menuList: { label: string; value: View; icon: ReactNode }[] = [
-    { label: 'Perfil', value: 'profile', icon: <TbAlignBoxLeftTop /> },
-    { label: 'Especialidades', value: 'security', icon: <TbTool /> },
+
     { label: 'Assinatura', value: 'billing', icon: <TbRocket /> },
-    { label: 'Avaliações', value: 'integration', icon: <TbMessageCog /> },
-    { label: 'Alterar Senha', value: 'integration', icon: <TbLockFilled /> },
-    { label: 'Ajuda', value: 'integration', icon: <TbHelp /> },
 ]
 
 export const SettingsMenu = ({ onChange }: { onChange?: () => void }) => {

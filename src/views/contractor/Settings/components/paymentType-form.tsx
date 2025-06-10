@@ -21,7 +21,7 @@ const PaymentType = ({ onChange, value = 'creditCard' }: PaymentTypeProps) => {
                     <Radio value="card">
                         <div className="flex items-center gap-2">
                             <TbCreditCard className="text-xl" />
-                            <span>Credit Card</span>
+                            <span>Cartão de Crédito</span>
                         </div>
                     </Radio>
                     <Radio value="pix">

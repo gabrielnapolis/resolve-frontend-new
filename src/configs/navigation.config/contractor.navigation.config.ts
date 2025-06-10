@@ -1,6 +1,9 @@
 import type { NavigationTree } from '@/@types/navigation'
-import { NAV_ITEM_TYPE_ITEM, NAV_ITEM_TYPE_TITLE } from '@/constants/navigation.constant'
-import { CONTRACTOR } from '@/constants/roles.constant';
+import {
+    NAV_ITEM_TYPE_ITEM,
+    NAV_ITEM_TYPE_TITLE,
+} from '@/constants/navigation.constant'
+import { CONTRACTOR } from '@/constants/roles.constant'
 
 const contractorNavigationConfig: NavigationTree[] = [
     {
@@ -18,6 +21,16 @@ const contractorNavigationConfig: NavigationTree[] = [
                 title: 'Perfil',
                 translateKey: '',
                 icon: 'uiDataDisplayAvatar',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                subMenu: [],
+            },
+            {
+                key: 'contractor.subscription',
+                path: '/contractor/subscription',
+                title: 'Assinatura',
+                translateKey: '',
+                icon: 'dashboardProject',
                 type: NAV_ITEM_TYPE_ITEM,
                 authority: [],
                 subMenu: [],
@@ -43,18 +56,8 @@ const contractorNavigationConfig: NavigationTree[] = [
                 subMenu: [],
             },
             {
-                key: 'contractor.signature',
-                path: '/contractor/settings',
-                title: 'Assinatura',
-                translateKey: '',
-                icon: 'dashboardProject',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
-            {
-                key: 'contractor.password',
-                path: '/contractor/password',
+                key: 'contractor.updatePassword',
+                path: '/contractor/update-password',
                 title: 'Atualizar Senha',
                 translateKey: '',
                 icon: 'forgotPassword',
@@ -76,4 +79,4 @@ const contractorNavigationConfig: NavigationTree[] = [
     },
 ]
 
-export default contractorNavigationConfig;
+export default contractorNavigationConfig

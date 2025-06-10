@@ -1,40 +1,40 @@
-import { authFetch } from "@/services/AuthService";
+import { authFetch } from '@/services/AuthService'
 
 export async function validatePayment(id: string): Promise<any> {
     const res = await authFetch(
         `http://localhost:3001/payment/subscription/pix/${id}/capture`,
-        { method: "GET" }
-    );
+        { method: 'GET' },
+    )
 
-    return res;
+    return res
 }
 
 export async function cancelSubscription(): Promise<any> {
     const res = await authFetch(
-        "http://localhost:3001/payment/subscription/cancel",
-        { method: "POST" }
-    );
-    return res;
+        'http://localhost:3001/payment/subscription/cancel',
+        { method: 'POST' },
+    )
+    return res
 }
 
 export async function getSubscription(): Promise<any> {
     const res = await authFetch(
-        "http://localhost:3001/payment/subscription/me",
+        'http://localhost:3001/payment/subscription/me',
         {
-            method: "GET",
-        }
-    );
+            method: 'GET',
+        },
+    )
 
-    return res;
+    return res
 }
 
 export async function generateQrCode(): Promise<any> {
     const res = await authFetch(
-        "http://localhost:3001/payment/subscription/pix",
+        'http://localhost:3001/payment/subscription/pix',
         {
-            method: "POST",
-        }
-    );
+            method: 'POST',
+        },
+    )
 
-    return res;
+    return res
 }

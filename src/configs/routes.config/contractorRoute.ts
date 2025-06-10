@@ -18,6 +18,12 @@ const contractorRoute: Routes = [
         component: lazy(() => import('@/views/contractor/Settings')),
         authority: [],
     },
+    {
+        key: 'contractor.subscription',
+        path: '/contractor/subscription',
+        component: lazy(() => import('@/views/contractor/Settings/components/SettingsBilling')),
+        authority: [],
+    }
 ]
 
 export default contractorRoute

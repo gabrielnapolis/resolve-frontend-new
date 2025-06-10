@@ -5,11 +5,9 @@ import SettingMobileMenu from './components/SettingMobileMenu'
 import useResponsive from '@/utils/hooks/useResponsive'
 import { useSettingsStore } from './store/settingsStore'
 
-const Profile = lazy(() => import('./components/SettingsProfile'))
-const Security = lazy(() => import('./components/SettingsSecurity'))
-const Notification = lazy(() => import('./components/SettingsNotification'))
+
 const Billing = lazy(() => import('./components/SettingsBilling'))
-const Integration = lazy(() => import('./components/SettingIntegration'))
+
 
 const Settings = () => {
     const { currentView } = useSettingsStore()
@@ -31,11 +29,8 @@ const Settings = () => {
                         </div>
                     )}
                     <Suspense fallback={<></>}>
-                        {currentView === 'profile' && <Profile />}
-                        {currentView === 'security' && <Security />}
-                        {currentView === 'notification' && <Notification />}
                         {currentView === 'billing' && <Billing />}
-                        {currentView === 'integration' && <Integration />}
+
                     </Suspense>
                 </div>
             </div>
