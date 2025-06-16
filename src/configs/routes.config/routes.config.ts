@@ -1,39 +1,48 @@
 import { lazy } from 'react'
-import authRoute from './authRoute'
 import type { Routes } from '@/@types/routes'
-import { ADMIN, USER } from '@/constants/roles.constant'
-import dashboardRoute from './dashboardRoute'
-import infoRoute from './infoRoute'
-import contractorRoute from './contractorRoute'
-import clientRoute from './clientRoute'
 
-export const publicRoutes: Routes = [...authRoute]
+import authRoute from './authRoute'
+import dashboardRoute from './dashboardRoute'
+import clientRoute from './clientRoute'
+import contractorRoute from './contractorRoute'
+import infoRoute from './infoRoute'
+
+// Help Center Routes
+const helpCenterRoutes: Routes = [
+    {
+        key: 'helpCenter.supportHub',
+        path: '/concepts/help-center/support-hub',
+        component: lazy(() => import('@/views/help-center/SupportHub')),
+        authority: [],
+    },
+    {
+        key: 'helpCenter.article',
+        path: '/concepts/help-center/article/:id',
+        component: lazy(() => import('@/views/help-center/Article')),
+        authority: [],
+    },
+    {
+        key: 'helpCenter.editArticle',
+        path: '/concepts/help-center/edit-article/:id',
+        component: lazy(() => import('@/views/help-center/EditArticle')),
+        authority: [],
+    },
+    {
+        key: 'helpCenter.manageArticle',
+        path: '/concepts/help-center/manage-article',
+        component: lazy(() => import('@/views/help-center/ManageArticle')),
+        authority: [],
+    },
+]
+
+export const publicRoutes: Routes = [
+    ...authRoute,
+    ...infoRoute,
+]
 
 export const protectedRoutes: Routes = [
-    {
-        key: 'home',
-        path: '/home',
-        component: lazy(() => import('@/views/search/index')),
-        authority: [],
-        meta: {
-            pageContainerType: 'gutterless',
-            pageBackgroundType: 'plain',
-        },
-    },
-    {
-        key: 'create.contractor',
-        path: '/create-contractor',
-        component: lazy(() => import('@/views/contractor/ContractorCreate')),
-        authority: [],
-    },
-    {
-        key: 'create.contractor.plans',
-        path: '/create-contractor/plans',
-        component: lazy(() => import('@/views/contractor/ContractorPlans')),
-        authority: [],
-    },
-    ...infoRoute,
-    ...contractorRoute,
     ...dashboardRoute,
-    ...clientRoute
+    ...clientRoute,
+    ...contractorRoute,
+    ...helpCenterRoutes,
 ]
