@@ -8,7 +8,7 @@ const SearchHome = () => {
         <>
             <TopSection />
             <BodySection />
-            {/* <Landing /> */}
+            <Landing />
         </>
     )
 }
