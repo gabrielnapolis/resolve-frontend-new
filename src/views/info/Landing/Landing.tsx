@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Button } from '@/components/ui'
 import { HiArrowRight, HiCheckCircle, HiPlay, HiDownload } from 'react-icons/hi'
@@ -31,22 +32,22 @@ const Landing = () => {
 
     const testimonials = [
         {
-            text: "Foi muito bem atendido, o profissional foi muito educado e fez um trabalho de qualidade. Valor justo, preço, orçamento grátis e rápido serviço.",
+            text: "O profissional foi muito competente e pontual. Realizou o serviço com qualidade e preço justo. Recomendo!",
             service: "Serviço de Pedreiro",
-            client: "Ana Paula",
+            client: "Maria Silva",
             location: "Contratou um Pedreiro em São Paulo, SP"
         },
         {
-            text: "Os profissionais são pessoas dedicadas com seus serviços. Tudo o que é pedido é feito da maneira certa foi pedido. Aprovado!",
+            text: "Excelente trabalho! O marceneiro entregou exatamente o que foi solicitado, no prazo combinado.",
             service: "Serviço de Marceneiro",
-            client: "Bruno Freitas",
-            location: "Contratou um Marceneiro em Curitiba, PR"
+            client: "João Santos",
+            location: "Contratou um Marceneiro em Rio de Janeiro, RJ"
         },
         {
-            text: "Uma excelente profissional, pontual e acima de tudo confiável! Foi bastante educada e atenciosa com o trabalho. Recomendo.",
+            text: "Profissional muito educado e cuidadoso. O resultado ficou perfeito e dentro do orçamento.",
             service: "Serviço de Pintor",
-            client: "Renata Figueiredo",
-            location: "Contratou um Pintor em Rio de Janeiro, RJ"
+            client: "Ana Costa",
+            location: "Contratou um Pintor em Belo Horizonte, MG"
         }
     ]
 
@@ -54,17 +55,17 @@ const Landing = () => {
         {
             icon: '📝',
             title: 'Faça o seu pedido',
-            description: 'Fale o que você precisa. É rápido e de graça!'
+            description: 'Descreva o serviço que precisa. É rápido e gratuito!'
         },
         {
             icon: '👥',
-            title: 'Receba até quatro orçamentos',
-            description: 'Profissionais avaliados entram em contato com você em instantes!'
+            title: 'Receba propostas',
+            description: 'Profissionais qualificados entram em contato com você!'
         },
         {
             icon: '👍',
             title: 'Escolha o melhor',
-            description: 'Negocie direto com eles. Fácil como nunca foi antes!'
+            description: 'Compare propostas e escolha o profissional ideal!'
         }
     ]
 
@@ -80,7 +81,7 @@ const Landing = () => {
                         <p className="text-xl mb-8 text-blue-100">
                             Conectamos você com profissionais qualificados para pedreiros, marceneiros, 
                             carpinteiros, pintores e muito mais. Busque de forma simples e clara, 
-                            de acordo com sua necessidade e onde mora.
+                            de acordo com sua necessidade e localização.
                         </p>
                         <div className="flex gap-4 justify-center flex-wrap">
                             <Button 
@@ -110,10 +111,10 @@ const Landing = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            Principais serviços pedidos
+                            Principais serviços disponíveis
                         </h2>
                         <p className="text-gray-600">
-                            Os serviços mais realizados de cada categoria
+                            Os serviços mais solicitados em nossa plataforma
                         </p>
                     </div>
                     
@@ -150,19 +151,18 @@ const Landing = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            O que é o GetNinjas?
+                            Como funciona o Resolve?
                         </h2>
                         <p className="text-gray-600 max-w-3xl mx-auto">
-                            GetNinjas é a maior plataforma de contratação de serviços do Brasil. 
-                            Conectamos Profissionais de todo o Brasil com pessoas solicitando serviço, 
-                            atendendo com qualidade, facilidade e rapidez todos os tipos de necessidade.
+                            O Resolve é uma plataforma que conecta você aos melhores prestadores de serviços 
+                            da sua região. Encontre profissionais qualificados de forma rápida e segura.
                         </p>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {features.map((feature, index) => (
                             <div key={index} className="text-center">
-                                <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <span className="text-3xl">{feature.icon}</span>
                                 </div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -182,17 +182,17 @@ const Landing = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            Quem contratou um ninja recomenda
+                            O que nossos clientes dizem
                         </h2>
                         <p className="text-gray-600">
-                            São mais de 3 milhões de clientes e profissionais felizes
+                            Depoimentos de quem já utilizou nossa plataforma
                         </p>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className="bg-white rounded-lg p-6 shadow-md">
-                                <div className="text-yellow-400 text-4xl mb-4">"</div>
+                                <div className="text-blue-500 text-4xl mb-4">"</div>
                                 <p className="text-gray-700 mb-4 italic">
                                     {testimonial.text}
                                 </p>
@@ -211,25 +211,25 @@ const Landing = () => {
             </section>
 
             {/* App Download Section */}
-            <section className="py-16 bg-yellow-400">
+            <section className="py-16 bg-blue-600">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-between max-w-6xl mx-auto">
                         <div className="flex-1">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                                Faça o download do nosso aplicativo
+                            <h2 className="text-3xl font-bold text-white mb-4">
+                                Baixe nosso aplicativo
                             </h2>
-                            <p className="text-gray-700 mb-6">
-                                Acesse nossa plataforma onde estiver. Baixe agora!
+                            <p className="text-blue-100 mb-6">
+                                Tenha acesso à nossa plataforma onde estiver. Baixe agora e encontre os melhores profissionais!
                             </p>
                             <div className="flex gap-4">
                                 <Button 
-                                    className="bg-black text-white hover:bg-gray-800"
+                                    className="bg-white text-blue-600 hover:bg-gray-100"
                                     icon={<HiDownload />}
                                 >
                                     Google Play
                                 </Button>
                                 <Button 
-                                    className="bg-black text-white hover:bg-gray-800"
+                                    className="bg-white text-blue-600 hover:bg-gray-100"
                                     icon={<HiDownload />}
                                 >
                                     App Store
@@ -241,10 +241,10 @@ const Landing = () => {
                                 <div className="w-64 h-80 bg-gray-900 rounded-3xl p-2 shadow-2xl transform rotate-12">
                                     <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
                                         <div className="text-center p-4">
-                                            <div className="text-sm font-semibold mb-4">Encontrar por profissional</div>
+                                            <div className="text-sm font-semibold mb-4">Encontrar Profissionais</div>
                                             <div className="grid grid-cols-2 gap-3">
                                                 {['Pedreiro', 'Pintor', 'Eletricista', 'Marceneiro', 'Encanador', 'Jardineiro'].map((prof, idx) => (
-                                                    <div key={idx} className="bg-yellow-100 p-2 rounded text-xs">
+                                                    <div key={idx} className="bg-blue-100 p-2 rounded text-xs">
                                                         {prof}
                                                     </div>
                                                 ))}
@@ -265,11 +265,11 @@ const Landing = () => {
                         Pronto para encontrar o profissional ideal?
                     </h2>
                     <p className="text-xl text-blue-100 mb-8">
-                        Milhares de profissionais qualificados estão esperando por você
+                        Milhares de profissionais qualificados estão prontos para atender você
                     </p>
                     <Button 
                         size="lg" 
-                        className="bg-yellow-400 text-gray-900 hover:bg-yellow-300"
+                        className="bg-white text-blue-600 hover:bg-gray-100"
                         onClick={() => navigate('/search')}
                         icon={<HiArrowRight />}
                     >
