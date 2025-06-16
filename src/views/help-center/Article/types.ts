@@ -1,5 +1,9 @@
+export type TableContent = {
+    id: string
+    label: string
+}[]
 
-export type GetSupportHubArticleResponse = {
+export type ArticleContent = {
     id: string
     title: string
     content: string
@@ -14,9 +18,7 @@ export type GetSupportHubArticleResponse = {
     timeToRead: number
     viewCount: number
     commentCount: number
-    tableOfContent: {
-        id: string
-        title: string
-        level: number
-    }[]
+    tableOfContent: TableContent
 }
+
+export type GetSupportHubArticleResponse = ArticleContent

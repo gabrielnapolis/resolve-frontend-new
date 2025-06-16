@@ -16,15 +16,3 @@ exposeLocalhost = true
 localPort = 5173
 externalPort = 5173
 exposeLocalhost = true
-
-[workflows]
-runButton = "Run"
-
-[[workflows.workflow]]
-name = "Run"
-author = 42943354
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"

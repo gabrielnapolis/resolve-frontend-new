@@ -3,18 +3,6 @@ import { categoryIcon } from '../utils'
 import classNames from '@/utils/classNames'
 import { useNavigate } from 'react-router-dom'
 
-import { useNavigate } from 'react-router-dom'
-import { Avatar } from '@/components/ui'
-import { classNames } from '@/utils'
-
-const categoryIcon: Record<string, string> = {
-    recursosBásicos: '📚',
-    configuração: '⚙️',
-    integrações: '🔗',
-    segurança: '🔒',
-    billing: '💳',
-}
-
 type ArticleProps = {
     id: string
     isLastChild: boolean
