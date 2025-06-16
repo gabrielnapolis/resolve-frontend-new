@@ -177,39 +177,6 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Testimonials Section */}
-            <section className="py-16 bg-gray-50">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            O que nossos clientes dizem
-                        </h2>
-                        <p className="text-gray-600">
-                            Depoimentos de quem já utilizou nossa plataforma
-                        </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-lg p-6 shadow-md">
-                                <div className="text-blue-500 text-4xl mb-4">"</div>
-                                <p className="text-gray-700 mb-4 italic">
-                                    {testimonial.text}
-                                </p>
-                                <div className="border-t pt-4">
-                                    <p className="font-semibold text-blue-600 mb-1">
-                                        {testimonial.service}
-                                    </p>
-                                    <p className="text-sm text-gray-600">
-                                        <strong>{testimonial.client}</strong> - {testimonial.location}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* App Download Section */}
             <section className="py-16 bg-blue-600">
                 <div className="container mx-auto px-4">
@@ -254,6 +221,39 @@ const Landing = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Testimonials Section */}
+            <section className="py-16 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                            O que nossos clientes dizem
+                        </h2>
+                        <p className="text-gray-600">
+                            Depoimentos de quem já utilizou nossa plataforma
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {testimonials.map((testimonial, index) => (
+                            <div key={index} className="bg-white rounded-lg p-6 shadow-md">
+                                <div className="text-blue-500 text-4xl mb-4">"</div>
+                                <p className="text-gray-700 mb-4 italic">
+                                    {testimonial.text}
+                                </p>
+                                <div className="border-t pt-4">
+                                    <p className="font-semibold text-blue-600 mb-1">
+                                        {testimonial.service}
+                                    </p>
+                                    <p className="text-sm text-gray-600">
+                                        <strong>{testimonial.client}</strong> - {testimonial.location}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
