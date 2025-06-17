@@ -51,11 +51,11 @@ const onSubmit = async (data: any) => {
 };
 const validationSchema: ZodType<SignInFormSchema> = z.object({
     email: z
-        .string({ required_error: 'Please enter your email' })
-        .min(1, { message: 'Please enter your email' }),
+        .string({ required_error: 'Por favor, informe seu e-mail' })
+        .min(1, { message: 'Por favor, informe seu e-mail' }),
     password: z
-        .string({ required_error: 'Please enter your password' })
-        .min(1, { message: 'Please enter your password' }),
+        .string({ required_error: 'Por favor, informe sua senha' })
+        .min(1, { message: 'Por favor, informe sua senha' }),
 })
 
 const SignInForm = (props: SignInFormProps) => {
@@ -68,10 +68,6 @@ const SignInForm = (props: SignInFormProps) => {
         formState: { errors },
         control,
     } = useForm<SignInFormSchema>({
-        defaultValues: {
-            email: 'admin-01@ecme.com',
-            password: '123Qwe',
-        },
         resolver: zodResolver(validationSchema),
     })
 
