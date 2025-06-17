@@ -8,7 +8,12 @@ const clientRoute: Routes = [
         component: lazy(() => import('@/views/contractor/ContractorProfile')),
         authority: [],
     },
-    
+    {
+        key: 'create.client',
+        path: '/create-client',
+        component: lazy(() => import('@/views/client/ClientCreate')),
+        authority: [],
+    },
     {
         key: 'clientDetail',
         path: '/client/detail/:id',

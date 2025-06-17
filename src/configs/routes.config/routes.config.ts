@@ -10,6 +10,15 @@ import clientRoute from './clientRoute'
 export const publicRoutes: Routes = [
     ...authRoute,
     {
+        key: 'help.article',
+        path: '/ajuda/artigo/:id',
+        component: lazy(() => import('@/views/help-center/Article')),
+        authority: [],
+    },
+]
+
+export const protectedRoutes: Routes = [
+    {
         key: 'home',
         path: '/home',
         component: lazy(() => import('@/views/search/index')),
@@ -31,22 +40,7 @@ export const publicRoutes: Routes = [
         component: lazy(() => import('@/views/contractor/ContractorPlans')),
         authority: [],
     },
-    {
-        key: 'create.client',
-        path: '/create-client',
-        component: lazy(() => import('@/views/client/ClientCreate')),
-        authority: [],
-    },
-    {
-        key: 'help.article',
-        path: '/ajuda/artigo/:id',
-        component: lazy(() => import('@/views/help-center/Article')),
-        authority: [],
-    },
     ...infoRoute,
-]
-
-export const protectedRoutes: Routes = [
     ...contractorRoute,
     ...dashboardRoute,
     ...clientRoute
