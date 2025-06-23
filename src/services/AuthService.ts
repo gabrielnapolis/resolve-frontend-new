@@ -8,6 +8,7 @@ import type {
     SignInResponse,
     SignUpResponse,
 } from '@/@types/auth'
+import { access } from 'fs';
 
 export async function apiSignIn(data: SignInCredential) {
   const url = process.env.NEXT_PUBLIC_API;
@@ -23,7 +24,7 @@ export async function apiSignIn(data: SignInCredential) {
         let data = await response.json();
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("configs", JSON.stringify(data.configs));
-        return { status: 'success', message: 'Usuário logado' }
+        return { status: 'success', message: 'Usuário logado', token: data.access_token, user: data.user   }
     }
 
     return { status: 'failed', message: 'Usuário ou senha inválido.' }
