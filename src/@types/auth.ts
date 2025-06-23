@@ -46,6 +46,13 @@ export type User = {
     type?: string | null
 }
 
+export enum AuthRouteType {
+    Public = 'public',
+    Contracted = 'contractor',
+    Admin = 'admin',
+    Client  =   'client',  
+
+}
 export type Token = {
     accessToken: string
     refereshToken?: string
