@@ -56,19 +56,15 @@ export interface ContractorOverview {
   active: string;
   fullname: string;
   fone: string;
-  email: string;
   description: string;
   state: string;
   city: string;
-  adress: string;
-  cep: string;
-  neighborhood: string;
+  address: string;
   specialities: [
     {
       speciality: {
         id: number;
         fullname: string;
-        logoPath: string;
       };
     }
   ];
