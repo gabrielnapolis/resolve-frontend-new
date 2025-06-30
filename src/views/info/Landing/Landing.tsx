@@ -55,17 +55,20 @@ const Landing = () => {
         {
             icon: '📝',
             title: 'Faça o seu pedido',
+
             description: 'Descreva o serviço que precisa. É rápido e gratuito!'
         },
         {
             icon: '👥',
             title: 'Receba propostas',
             description: 'Profissionais qualificados entram em contato com você!'
+
         },
         {
             icon: '👍',
             title: 'Escolha o melhor',
             description: 'Compare propostas e escolha o profissional ideal!'
+
         }
     ]
 
@@ -82,6 +85,7 @@ const Landing = () => {
                             Conectamos você com profissionais qualificados para pedreiros, marceneiros, 
                             carpinteiros, pintores e muito mais. Busque de forma simples e clara, 
                             de acordo com sua necessidade e localização.
+
                         </p>
                         <div className="flex gap-4 justify-center flex-wrap">
                             <Button 
@@ -115,6 +119,7 @@ const Landing = () => {
                         </h2>
                         <p className="text-gray-600">
                             Os serviços mais solicitados em nossa plataforma
+
                         </p>
                     </div>
                     
@@ -138,6 +143,7 @@ const Landing = () => {
                                         onClick={() => navigate('/search')}
                                     >
                                         Encontrar Prestador
+
                                     </Button>
                                 </div>
                             </div>
@@ -156,6 +162,7 @@ const Landing = () => {
                         <p className="text-gray-600 max-w-3xl mx-auto">
                             O Resolve é uma plataforma que conecta você aos melhores prestadores de serviços 
                             da sua região. Encontre profissionais qualificados de forma rápida e segura.
+
                         </p>
                     </div>
                     
@@ -163,6 +170,7 @@ const Landing = () => {
                         {features.map((feature, index) => (
                             <div key={index} className="text-center">
                                 <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+
                                     <span className="text-3xl">{feature.icon}</span>
                                 </div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -212,6 +220,7 @@ const Landing = () => {
                                             <div className="grid grid-cols-2 gap-3">
                                                 {['Pedreiro', 'Pintor', 'Eletricista', 'Marceneiro', 'Encanador', 'Jardineiro'].map((prof, idx) => (
                                                     <div key={idx} className="bg-blue-100 p-2 rounded text-xs">
+
                                                         {prof}
                                                     </div>
                                                 ))}
@@ -224,7 +233,7 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
-
+        
             {/* Testimonials Section */}
             <section className="py-16 bg-gray-50">
                 <div className="container mx-auto px-4">
@@ -258,6 +267,7 @@ const Landing = () => {
                 </div>
             </section>
 
+
             {/* CTA Section */}
             <section className="py-16 bg-blue-800 text-white">
                 <div className="container mx-auto px-4 text-center">
@@ -270,6 +280,7 @@ const Landing = () => {
                     <Button 
                         size="lg" 
                         className="bg-white text-blue-600 hover:bg-gray-100"
+
                         onClick={() => navigate('/search')}
                         icon={<HiArrowRight />}
                     >

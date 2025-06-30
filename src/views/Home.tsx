@@ -1,5 +1,8 @@
+
+import Landing from './info/Landing'
+
 const Home = () => {
-    return <div>Home</div>
+    return <Landing />
 }
 
 export default Home
