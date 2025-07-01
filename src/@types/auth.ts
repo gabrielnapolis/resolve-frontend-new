@@ -43,9 +43,16 @@ export type User = {
     userName?: string | null
     email?: string | null
     authority?: string[]
-    type?: string | null
+    type?: UserType | null
 }
 
+export enum UserType {
+    Public = 'public',
+    Contracted = 'contractor',
+    Admin = 'admin',
+    Client  =   'client',  
+
+}
 export type Token = {
     accessToken: string
     refereshToken?: string
