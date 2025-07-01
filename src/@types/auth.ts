@@ -43,10 +43,10 @@ export type User = {
     userName?: string | null
     email?: string | null
     authority?: string[]
-    type?: string | null
+    type?: UserType | null
 }
 
-export enum AuthRouteType {
+export enum UserType {
     Public = 'public',
     Contracted = 'contractor',
     Admin = 'admin',

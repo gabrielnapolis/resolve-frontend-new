@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import AdaptiveCard from '@/components/shared/AdaptiveCard'
 import SettingsMenu from './components/SettingsMenu'
-import SettingMobileMenu from './components/SettingMobileMenu'
+
 import useResponsive from '@/utils/hooks/useResponsive'
 import { useSettingsStore } from './store/settingsStore'
 
@@ -25,7 +25,7 @@ const Settings = () => {
                 <div className="ltr:xl:pl-6 rtl:xl:pr-6 flex-1 py-2">
                     {smaller.lg && (
                         <div className="mb-6">
-                            <SettingMobileMenu />
+                       
                         </div>
                     )}
                     <Suspense fallback={<></>}>
