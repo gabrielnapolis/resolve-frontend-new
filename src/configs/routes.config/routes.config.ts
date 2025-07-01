@@ -1,17 +1,14 @@
 import { lazy } from 'react'
 import authRoute from './authRoute'
 import type { Routes } from '@/@types/routes'
-import { ADMIN, USER } from '@/constants/roles.constant'
 import dashboardRoute from './dashboardRoute'
 import infoRoute from './infoRoute'
 import contractorRoute from './contractorRoute'
 import clientRoute from './clientRoute'
 
 export const publicRoutes: Routes = [
-    ...authRoute
-]
-
-export const protectedRoutes: Routes = [
+    ...authRoute,
+    ...infoRoute,
     {
         key: 'home',
         path: '/home',
@@ -34,8 +31,27 @@ export const protectedRoutes: Routes = [
         component: lazy(() => import('@/views/contractor/ContractorPlans')),
         authority: [],
     },
-    ...infoRoute,
+    {
+        key: 'dashboard.contractor.details',
+        path: '/adm/dashboard/contractor/details/:id',
+        component: lazy(
+            () =>
+                import(
+                    '@/views/adm/Dashboard/DashboardContractor/components/ContractorDetails'
+                ),
+        ),
+        authority: [],
+    },
+    {
+        key: 'create.client',
+        path: '/create-client',
+        component: lazy(() => import('@/views/client/ClientCreate')),
+        authority: [],
+    },
+]
+
+export const protectedRoutes: Routes = [
     ...contractorRoute,
     ...dashboardRoute,
-    ...clientRoute
+    ...clientRoute,
 ]

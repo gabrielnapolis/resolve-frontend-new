@@ -17,23 +17,13 @@ const infoRoute: Routes = [
     {
         key: 'info.works',
         path: '/como-funciona',
-        component: lazy(() => import('@/views/info/Works')),
-        authority: [],
-        meta: {
-            pageContainerType: 'gutterless',
-            pageBackgroundType: 'plain',
-        },
-    },
-    {
-        key: 'info.aboutUs',
-        path: '/sobre-nos',
         component: lazy(() => import('@/views/info/AboutUs')),
         authority: [],
         meta: {
             pageContainerType: 'gutterless',
             pageBackgroundType: 'plain',
         },
-    },
+    }
 ]
 
 export default infoRoute

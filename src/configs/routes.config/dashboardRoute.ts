@@ -1,6 +1,5 @@
 import { lazy } from 'react'
-import { DASHBOARDS_PREFIX_PATH } from '@/constants/route.constant'
-import { ADMIN, USER } from '@/constants/roles.constant'
+import { ADMIN } from '@/constants/roles.constant'
 import type { Routes } from '@/@types/routes'
 
 const dashboardRoute: Routes = [
@@ -8,7 +7,7 @@ const dashboardRoute: Routes = [
         key: 'admin.dashboard',
         path: '/admin/dashboard',
         component: lazy(() => import('@/views/adm/Dashboard/Dashboard')),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.contractors',
@@ -19,7 +18,7 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardContractor/DashboardContractor'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.clients',
@@ -28,7 +27,7 @@ const dashboardRoute: Routes = [
             () =>
                 import('@/views/adm/Dashboard/DashboardClient/DashboardClient'),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.specialities',
@@ -39,7 +38,7 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardSpeciality/DashboardSpeciality'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.payments',
@@ -50,7 +49,7 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardPayments/DashboardPayments'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.reports',
@@ -61,7 +60,7 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardReports/DashboardReports'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.marketing',
@@ -72,7 +71,7 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardMarketing/DashboardMarketing'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'admin.dashboard.configuration',
@@ -83,20 +82,19 @@ const dashboardRoute: Routes = [
                     '@/views/adm/Dashboard/DashboardConfiguration/DashboardConfiguration'
                 ),
         ),
-        authority: [],
+        authority: [ADMIN],
     },
     {
         key: 'dashboard.contractor',
         path: '/adm/dashboard/contractor',
-        component: lazy(() => import('@/views/adm/Dashboard/DashboardContractor/DashboardContractor')),
+        component: lazy(
+            () =>
+                import(
+                    '@/views/adm/Dashboard/DashboardContractor/DashboardContractor'
+                ),
+        ),
         authority: [ADMIN],
-    },
-    {
-        key: 'dashboard.contractor.details',
-        path: '/adm/dashboard/contractor/details/:id',
-        component: lazy(() => import('@/views/adm/Dashboard/DashboardContractor/components/ContractorDetails')),
-        authority: [ADMIN],
-    },
+    }
 ]
 
 export default dashboardRoute

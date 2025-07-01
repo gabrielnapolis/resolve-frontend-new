@@ -10,9 +10,9 @@ export type AppConfig = {
 
 const appConfig: AppConfig = {
     apiPrefix: 'http://localhost:3001/', 
-    authenticatedEntryPath: '/home',
-    unAuthenticatedEntryPath: '/sign-in',
-    locale: 'en',
+    authenticatedEntryPath: '/como-funciona',
+    unAuthenticatedEntryPath: '/home',
+    locale: 'pt',
     accessTokenPersistStrategy: 'cookies',
     enableMock: true,
     activeNavTranslation: false,
