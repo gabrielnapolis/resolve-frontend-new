@@ -8,13 +8,7 @@ import contractorRoute from './contractorRoute'
 import clientRoute from './clientRoute'
 
 export const publicRoutes: Routes = [
-    ...authRoute,
-    {
-        key: 'help.article',
-        path: '/ajuda/artigo/:id',
-        component: lazy(() => import('@/views/help-center/Article')),
-        authority: [],
-    },
+    ...authRoute
 ]
 
 export const protectedRoutes: Routes = [
