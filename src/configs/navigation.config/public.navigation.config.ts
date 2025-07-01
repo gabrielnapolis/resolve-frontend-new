@@ -65,16 +65,6 @@ const publicNavigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
-    {
-        key: 'info.aboutUs',
-        path: '/sobre-nos',
-        title: 'Sobre nós',
-        translateKey: 'nav.help',
-        icon: 'utilsDoc',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
 ]
 
 export default publicNavigationConfig

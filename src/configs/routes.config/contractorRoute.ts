@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { ADMIN, USER } from '@/constants/roles.constant'
+import { CONTRACTOR } from '@/constants/roles.constant'
 import type { Routes } from '@/@types/routes'
 
 const contractorRoute: Routes = [
@@ -7,7 +7,7 @@ const contractorRoute: Routes = [
         key: 'contractor.profile',
         path: 'contractor/profile',
         component: lazy(() => import('@/views/contractor/ContractorProfile')),
-        authority: [ADMIN, USER],
+        authority: [CONTRACTOR],
         meta: {
             pageContainerType: 'contained',
         },
@@ -16,14 +16,19 @@ const contractorRoute: Routes = [
         key: 'contractor.dashboard',
         path: '/contractor/dashboard',
         component: lazy(() => import('@/views/contractor/Settings')),
-        authority: [],
+        authority: [CONTRACTOR],
     },
     {
         key: 'contractor.subscription',
         path: '/contractor/subscription',
-        component: lazy(() => import('@/views/contractor/Settings/components/SettingsBilling')),
-        authority: [],
-    }
+        component: lazy(
+            () =>
+                import(
+                    '@/views/contractor/Settings/components/SettingsBilling'
+                ),
+        ),
+        authority: [CONTRACTOR],
+    },
 ]
 
 export default contractorRoute

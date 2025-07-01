@@ -22,7 +22,7 @@ const dashboardsNavigationConfig: NavigationTree[] = [
                 translateKey: 'nav.DashboardContractors',
                 icon: 'dashboardEcommerce',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
+                authority: [ADMIN],
                 subMenu: [],
             },
             {
@@ -32,7 +32,7 @@ const dashboardsNavigationConfig: NavigationTree[] = [
                 translateKey: 'nav.DashboardContractors',
                 icon: 'customers',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
+                authority: [ADMIN],
                 subMenu: [],
             },
             {
